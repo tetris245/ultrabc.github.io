@@ -9881,7 +9881,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                     "Content": msg6,
                                     "Type": "Whisper",
                                     "Target": ChatRoomTargetMemberNumber
-                                );
+                                });
                                 for (let C = 0; C < ChatRoomCharacter.length; C++)
                                     if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
                                         if ((ChatRoomCharacter[C].Nickname == '') || (ChatRoomCharacter[C].Nickname == undefined)) {
