@@ -14766,7 +14766,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                        var gbc = 0;                    
                     } else {
                         str = Player.ExtensionSettings.FBC;
-                        d = LZString.decompressF romBase64(str);
+                        d = LZString.decompressFromBase64(str);
                         FBCdata = {};
                         decoded = JSON.parse(d);
                         FBCdata = decoded;
