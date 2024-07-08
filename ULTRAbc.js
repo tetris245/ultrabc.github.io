@@ -1018,8 +1018,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('ChatRoomSendChat', 4, (args, next) => {
            const inputChat = /** @type {null | HTMLTextAreaElement} */(document.getElementById("InputChat"));
            if (!inputChat) {
-		       return;
-	       }
+               return;
+	   }
            let msg = inputChat.value.trim ();
 	   if (!msg.length) return;
            var tsp = 0;
