@@ -35,7 +35,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     //Main variables and settings for UBC and The Moaner
     window.UBCver = UBCver;
-    let dc = 0;
     let ini = 0;
     let kp = 0;
 
@@ -49,6 +48,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var M_MOANER_scriptOn = false;
     var M_MOANER_cum = false;
     let profileName;
+    var animal = 0;
     var cdesk = 0;
     var cfame = 200;
     var gl = 0;
@@ -56,6 +56,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var mgl = 0;
     var rsize = 20;
     let rtype = "";
+    var st = 0;
 
     let AutojoinOn;
     let DolltalkOn;
@@ -149,20 +150,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var HighfameStatus = ["High fame mode enabled in Bondage Club Card Game.",
         "High fame mode disabled in Bondage Club Card Game."
     ];
-    var MagiccheatStatus = ["Cheat mode enabled in Bondage Brawl and Magic School.",
-        "Cheat mode disabled in Magic School."
+    var MagiccheatStatus = ["Cheat mode enabled in B.Brawl and Magic School.",
+        "Cheat mode disabled in B. Brawl and Magic School."
     ];
-    var MagictoysStatus = ["Toys can be added under locked chastity for trap mode in map rooms.",
-        "Toys can't be added under locked chastity for trap mode in map rooms.",
+    var MagictoysStatus = ["Magic toys added under locked chastity for trap mode.",
+        "No magic toys added under locked chastity for trap mode.",
     ];
     var MaptrapStatus = ["Traps in map rooms if you 'walk' on devices.",
         "No traps with devices in map rooms."
     ];
-    var NogarbleStatus = ["BC default talk mode will ungarble messages and whispers.",
-        "BC default talk mode will not ungarble messages and whispers."
+    var NogarbleStatus = ["Ungarble with BC default talk mode.",
+        "No ungarble with BC default talk mode."
     ];
     var NostruggleStatus = ["Automatic struggle in mini-games is enabled.",
         "Automatic struggle in mini-games is disabled."
+    ];  
+    var NotimeoutStatus = ["Time-out disabled in TAB help.",
+        "Time-out enabled in TAB help."
     ];
     var NowhisperStatus = ["No-whisper mode enabled.",
         "No-whisper mode disabled."
@@ -391,6 +395,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun2 = "";
             pronoun3 = "";
             pronoun4 = "";
+	    animal = 0;
             cdesk = 0;
             cfame = 200;
             gl = 0;
@@ -398,6 +403,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mgl = 0;
             rsize = 20;
             rtype = "";
+	    st = 0;
             AutojoinOn = false;
             DolltalkOn = false;
             FullseedOn = false;
@@ -460,6 +466,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             pronoun2 = datas.pronoun2;
             pronoun3 = datas.pronoun3;
             pronoun4 = datas.pronoun4;
+	    animal = datas.animal;
             cdesk = datas.cdesk;
             cfame = datas.cfame;
             gl = datas.gaglevel;
@@ -467,6 +474,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             mgl = 0;
             rsize = datas.rsize;
             rtype = datas.rtype;
+	    st = datas.stutterlevel;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
             FullseedOn = datas.fullseed;
@@ -532,11 +540,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "pronoun2": pronoun2,
             "pronoun3": pronoun3,
             "pronoun4": pronoun4,
+            "animal": animal,
             "cdesk": cdesk,
             "cfame": cfame,
             "gaglevel": gl,
             "rsize": rsize,
             "rtype": rtype,
+            "stutterlevel": st,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
             "fullseed": FullseedOn,
@@ -636,6 +646,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     DolltalkOn = false;
                     M_MOANER_saveControls();
                 }
+		if (animal == null || animal == undefined) {
+                    animal = 0;
+                    st = 0;
+                    M_MOANER_saveControls();
+                }
+                if (animal == 1) AnimalTalk1On = true;
+                if (animal == 2) AnimalTalk2On = true; 
+                if (animal == 3) AnimalTalk3On = true;
+                if (animal == 4) AnimalTalk4On = true;
+                if (animal == 5) AnimalTalk5On = true;
+                if (animal == 6) AnimalTalk6On = true;
+                if (animal == 7) AnimalTalk7On = true;
+                if (animal == 8) AnimalTalk8On = true;
                 if (gl == null || gl == undefined) {
                     gl = 0;
                     notalk = 0;
@@ -657,6 +680,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     MagictoysOn = false;
                     M_MOANER_saveControls();
                 }
+		if (NotimeoutOn == null || NotimeoutOn == undefined) {
+                    NotimeoutOn = false;
+                    M_MOANER_saveControls();
+                }
                 if (reaction == null || reaction == undefined) {
                     reaction = 0;
                     M_MOANER_saveControls();
@@ -665,6 +692,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     RglbuttonsOn = true;
                     M_MOANER_saveControls();
                 }
+		if (st == 0) StutterOn = false;
+                if (st > 0) StutterOn = true;
                 ini = 1;
                 FBCsettings();
             } catch (err) {
