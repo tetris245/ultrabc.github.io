@@ -350,7 +350,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         "Cheat mode disabled in B. Brawl and Magic School."
     ];
     var MagictoysStatus = ["Magic toys added under locked chastity for trap mode.",
-        "No magic toys added under locked chastity for trap mode.",
+        "No magic toys added under locked chastity for trap mode."
     ];
     var MaptrapStatus = ["Traps in map rooms if you 'walk' on devices.",
         "No traps with devices in map rooms."
