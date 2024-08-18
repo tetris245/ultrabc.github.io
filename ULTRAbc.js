@@ -397,8 +397,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var BestFriendsStatus = ["Best Friends feature is enabled.",
         "Best Friends feature is disabled."
     ];
-    var FriendlistSlotsStatus = ["No extra infos in Friendlist.",
-        "Extra infos in Friendlist."
+    var FriendlistSlotsStatus = ["Extra infos in Friendlist.",
+        "Np extra infos in Friendlist."
     ];
     var LockConversionStatus = ["High security locks can become Best Friend locks.",
         "High security locks can't become Best Friend locks."
