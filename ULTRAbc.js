@@ -1598,10 +1598,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchParseResponse() {
         modApi.hookFunction('ChatSearchParseResponse', 4, (args, next) => {
-            if (!["Always", "Hybrid", "Never"].includes(rtype)) return next(args);
+            if (!["ALL", "Always", "Hybrid", "Never"].includes(rtype)) return next(args);
             const ret = next(args);
             let NewResult = [];
-            if (rtype == "") {
+            if (rtype == "ALL") {
                 let rm = 0;
                 while (rm < ret.length) {
                     if ((ret[rm].MemberLimit <= rsize) || (ret[rm].MapType == "Always")) {
@@ -1644,7 +1644,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAChatSearchRoomSpaceSelectClick() {
         modApi.hookFunction('ChatSearchRoomSpaceSelectClick', 4, (args, next) => {
             if ((MouseX >= 385) && (MouseX < 465) && (MouseY >= 885) && (MouseY < 975)) {
-                rtype = "";
+                rtype = "ALL";
                 M_MOANER_saveControls();
                 ChatSelectStartSearch(ChatRoomSpace);
             }
