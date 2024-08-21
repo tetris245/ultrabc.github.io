@@ -12283,7 +12283,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 var type = args;
                 if ((type > -1) && (type < 4) && (type != rtype)) {
                     if (type == 0) {
-                        rtype = "";
+                        rtype = "ALL";
                     }
                     if (type == 1) {
                         rtype = "Never";
