@@ -55,7 +55,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     var onegl = 0;
     var mgl = 0;
     var rsize = 20;
-    let rtype = "";
+    let rtype = "ALL";
     var st = 0;
 
     let AutojoinOn;
@@ -572,7 +572,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             onegl = 0;
             mgl = 0;
             rsize = 20;
-            rtype = "";
+            rtype = "ALL";
 	    st = 0;
             AutojoinOn = false;
             DolltalkOn = false;
@@ -872,8 +872,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     rsize = 20;
                     M_MOANER_saveControls();
                 }
-                if (rtype == null || rtype == undefined) {
-                    rtype = "";
+                if (rtype == null || rtype == undefined || rtype == "") {
+                    rtype = "ALL";
                     M_MOANER_saveControls();
                 }
 		if (st == 0) StutterOn = false;
@@ -3377,7 +3377,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function showSearchRoomStatus() {
         let msg;
         msg1 = "Chat Search type: ";
-        if (rtype == "") msg2 = "All rooms. ";
+        if (rtype == "ALL") msg2 = "All rooms. ";
         if (rtype == "Never") msg2 = "Normal rooms. ";
         if (rtype == "Hybrid") msg2 = "Hybrid rooms. ";
         if (rtype == "Always") msg2 = "Mapped rooms. ";
