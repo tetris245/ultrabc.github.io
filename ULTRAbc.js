@@ -6198,7 +6198,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatRoomHideElements();
                 InformationSheetLoadCharacter(Player);
                 OnlineProfileLoad();          
-                CommonSetScreen("Character", "OnlineProfile")        
+                CommonSetScreen("Character", "OnlineProfile");       
             } else {
                 var targetname = args;
                 var target = ChatRoomCharacter.filter(A => (A.Name.toLowerCase().startsWith(targetname.toLowerCase())));
@@ -6210,7 +6210,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ChatRoomSetLastChatRoom("");            
                     ChatRoomHideElements();
                     InformationSheetLoadCharacter(target[0]);
-                    OnlineProfileRun();
+                    OnlineProfileLoad();
                     CommonSetScreen("Character", "OnlineProfile");
                 }
             }
