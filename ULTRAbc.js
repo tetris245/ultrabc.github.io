@@ -6919,7 +6919,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "Stable");
                     StableDressPonyStart();
                     StableWearPonyEquipment(Player);
@@ -6928,7 +6928,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "MaidQuarters");
                     GameType = "MaidCleaning";
                     MaidQuartersMaid.Stage = "400";
@@ -6936,7 +6936,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "Introduction");
                     IntroductionJobStart("SubDojo", 0)
                     IntroductionJobDojoStart();
@@ -6944,7 +6944,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "MaidQuarters");
                     GameType = "MaidDrinks";
                     MaidQuartersMaid.Stage = "200";
@@ -6952,7 +6952,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "Stable");
                     StableDressPonyStart();
                     StableWearPonyEquipment(Player);
@@ -6961,7 +6961,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "Introduction");
                     IntroductionJobStart("DomKidnap", 0)
                     IntroductionJobBouncerStart();
@@ -6969,21 +6969,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "MovieStudio");
                     MovieStudioDailyMovie = "Interview";
                 } else if (minigame == "movie2") {
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "MovieStudio");
                     MovieStudioDailyMovie = "OpenHouse";
                 } else if (minigame == "puppy") {
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "Introduction");
                     IntroductionJobStart("DomPuppy", 0)
                     IntroductionJobPuppyStart();
@@ -6991,7 +6991,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "MaidQuarters");
                     GameType = "RhythmGame";
                     MaidQuartersMaid.Stage = "500";
@@ -6999,7 +6999,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "Stable");
                     StablePlayerAppearance = Player.Appearance.slice();
                     StableWearTrainerEquipment(Player);
@@ -7008,7 +7008,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
                     OnlineGameName = "";
-                    ChatRoomClearAllElements();
+                    ChatRoomHideElements();
                     CommonSetScreen("Room", "Stable");
                     StablePlayerAppearance = Player.Appearance.slice();
                     StableWearTrainerEquipment(Player);
