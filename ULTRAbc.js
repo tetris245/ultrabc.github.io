@@ -6906,7 +6906,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(minigame): launches a minigame.",
         Action: (args) => {
             if (args === "") {
-                var msg = "The game command must include a minigame.\n" +
+                let msg = "The game command must include a minigame.\n" +
                     "Available minigames:\n" +
                     "carrot, cleaning, dojo, drinks, hurdle, kidnap, movie1,\n" +
                     "movie2, puppy, rhythm, training, whippony.\n" +
@@ -6914,7 +6914,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "You need to click on the maid in the Maid Quarters for the cleaning, drinks and rhythm games.";
                 infomsg(msg);
             } else {
-                var minigame = args;
+                let minigame = args;
                 if (minigame == "carrot") {
                     ServerSend("ChatRoomLeave", "");
                     ChatRoomSetLastChatRoom("");
