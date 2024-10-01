@@ -6751,8 +6751,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Description: "(font) (size): changes font in BC. ",
         Action: (args) => {
             if (args === "") {
-                var msg = "The font command must be followed by a font number and optionally a size number.\n" +
-                    "The effect will be visible in the chat after an automatic relog.\n" +
+                let msg = "The font command must be followed by a font number and optionally a size number.\n" +
                     "Supported fonts: 0 Arial - 1 Times New Roman\n" +
                     "2 Papyrus - 3 Comic Sans - 4 Impact\n" +
                     "5 Helvetica Neue - 6 Verdana - 7 Century Gothic\n" +
@@ -6760,10 +6759,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Sizes: 0 Small - 1 Medium - 2 Large";
                 infomsg(msg);
             } else {
-                var stringFont1 = args;
-                var stringFont2 = stringFont1.split(/[ ,]+/);
-                var font = stringFont2[0];
-                var size = stringFont2[1];
+                let stringFont1 = args;
+                let stringFont2 = stringFont1.split(/[ ,]+/);
+                let font = stringFont2[0];
+                let size = stringFont2[1];
                 Player.GraphicsSettings.Font = PreferenceGraphicsFontList[font];
                 CommonGetFont.clearCache();
                 CommonGetFontName.clearCache();
