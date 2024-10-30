@@ -7367,7 +7367,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     infomsg(msg);
                 } else {
 		    let msg = "Magical lasers make " + tmpname + " completely invisible.";
-                    if (Invisible == undefined) {
+                    if (Invisible != undefined) {
                         if (Invisible != "") {
                             if (Invisible.startsWith("\u0027")) {
                                 msg = tmpname + Invisible;
