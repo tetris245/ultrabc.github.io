@@ -708,6 +708,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		if (HighfameOn == null || HighfameOn == undefined) HighfameOn = false;
                 if (HotkeysOn == null || HotkeysOn == undefined)  HotkeysOn = false;
 		if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
+		if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
 		if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
                 if (M_MOANER_scriptOn == null || M_MOANER_scriptOn == undefined) M_MOANER_scriptOn = false;
                 if (M_MOANER_spankActive == null || M_MOANER_spankActive == undefined) M_MOANER_spankActive = true;
@@ -823,6 +824,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		cdesk: 0,
 		cextra: false,
                 cfame: 200,
+		cum: false,
 	        extbuttons: false,
                 fixperm: false,
                 frkeys: false,
@@ -1325,6 +1327,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		}
 		
 		PreferenceSubscreenUBCSettingsExit = function () {
+		    Player.UBC.ubcSettings.cum = false;
                     let data = Player.UBC.ubcSettings;
                     bgall = data.bgall;
 		    cdesk = data.cdesk;
@@ -1337,6 +1340,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    HighfameOn = data.highfame;
                     HotkeysOn = data.hotkeys;
 		    MagiccheatOn = data.magiccheat;
+		    M_MOANER_cum = data.cum;
 		    M_MOANER_orgasmActive = data.orgasmMoan;
                     M_MOANER_scriptOn = data.script;
                     M_MOANER_spankActive = data.spankMoan;
@@ -2758,9 +2762,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     //Orgasm
     async function ULTRAActivityChatRoomArousalSync() {
         modApi.hookFunction('ActivityChatRoomArousalSync', 4, (args, next) => {
-            if ((Player.ArousalSettings.OrgasmStage == 0) && (M_MOANER_cum == true)) {
-                M_MOANER_cum = false;
-                M_MOANER_saveControls();
+            if (Player.UBC.ubcSettings.cum == true) {
+                if (Player.ArousalSettings.OrgasmStage == 2) { 
+                    setTimeout(function() {
+                        Player.ArousalSettings.OrgasmStage = 0;
+                        Player.UBC.ubcSettings.cum = false; 
+                    }, 15000);
+                }            
             }
             next(args);
         });
@@ -4886,10 +4894,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ElementValue("InputChat", moan3.replace(moan3, moan4));
                 msg = "";
                 ActivityChatRoomArousalSync(Player);
-                if (M_MOANER_cum == false) {
+                if (Player.UBC.ubcSettings.cum  == false) {
                     ChatRoomSendChat();
-                    M_MOANER_cum = true;
-                    M_MOANER_saveControls();
+                    Player.UBC.ubcSettings.cum = true;
                 }
                 if (sc == 0) {
                     ChatRoomTargetMemberNumber = backupChatRoomTargetMemberNumber;
