@@ -4935,7 +4935,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         
         Target = "ItemMouth2";
         Item = InventoryGet(Player, Target);
-        publicmsg(Item.Asset.Name);
+        if (Item!=null) publicmsg(Item.Asset.Name);
         if (Item!=null && Item.Asset.Name == "gag") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 1,
