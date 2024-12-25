@@ -20,7 +20,7 @@ setTimeout(
 			let n = document.createElement("script");
 			n.setAttribute("language", "JavaScript");
 			n.setAttribute("crossorigin", "anonymous");
-			n.setAttribute("src", "https://tetris245.github.io/ultrabc.github.io/ULTRAbc.js?_=" + Date.now());
+			n.setAttribute("src", "https://github.com/azt-x/ultrabc.github.io/blob/main/ULTRAbcloader.user.js=_" + Date.now());
 			n.onload = () => n.remove();
 			document.head.appendChild(n);
 	}, 
