@@ -2109,11 +2109,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
                         publicmsg(msg);
                     }
-                    if (item2 == "Coffin") {
+                    /*if (item2 == "Coffin") {
                         CoffinTrap(); 
                         let msg = "" + tmpname + " is suddenly trapped in a Coffin.";
                         publicmsg(msg);
-                    }
+                    }*/
                     if (item2 == "Trolley") {
                         TrolleyTrap();
                         let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
@@ -4915,10 +4915,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "HarnessBallGag1", "ItemMouth2");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
         InventoryWear(Player, "LewdBlindfold", "ItemHead");
-        
-        //InventoryWear(Player, "ToeTie", "ItemBoots");
-        //InventoryWear(Player, "HempRope", "ItemFeet");
-        //InventoryWear(Player, "HempRope", "ItemLegs");
         if ((InventoryGet(Player, "ItemPelvis") == null) ||
             (InventoryGet(Player, "ItemPelvis").Property == null) ||
             (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
@@ -4967,11 +4963,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         CharacterNaked(Player);     
         InventoryWear(Player, "QualityHarnessGag", "ItemMouth3");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "LeatherBlindfold", "ItemHead");
-        
+        InventoryWear(Player, "LeatherBlindfold", "ItemHead");        
         InventoryWear(Player, "LeatherToeCuffs", "ItemBoots");
-        //InventoryWear(Player, "HempRope", "ItemFeet");
-        //InventoryWear(Player, "HempRope", "ItemLegs");
         if ((InventoryGet(Player, "ItemPelvis") == null) ||
             (InventoryGet(Player, "ItemPelvis").Property == null) ||
             (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
@@ -5048,6 +5041,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
     }
+    //not yet implemented
     function CoffinTrap(){}
 
 
