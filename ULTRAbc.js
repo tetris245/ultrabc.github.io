@@ -2109,6 +2109,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
                         publicmsg(msg);
                     }
+
+			publicmsg(item2);
                 }
             }
             if (newTile && newTile.OnEnter) newTile.OnEnter();
