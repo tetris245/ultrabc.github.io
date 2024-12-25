@@ -4998,28 +4998,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "ShinyStraitjacket", "ItemArms");
         InventoryWear(Player, "Trolley", "ItemDevices");
         
-        Target = "ItemMouth3";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null) publicmsg(Item.Asset.Name);
-        Target = "ItemArms";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null) publicmsg(Item.Asset.Name);
-        Target = "ItemHead";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null) publicmsg(Item.Asset.Name);
-        Target = "ItemLegs";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null) publicmsg(Item.Asset.Name);
-        Target = "ItemBoots";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null) publicmsg(Item.Asset.Name);
-        Target = "ItemButt";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null) publicmsg(Item.Asset.Name);
-        Target = "ItemPelvis";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null) publicmsg(Item.Asset.Name);
-
+        
         Target = "ItemMouth3";
         Item = InventoryGet(Player, Target);
         if (Item!=null && Item.Asset.Name == "QualityHarnessGag") {
@@ -5047,6 +5026,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (Item!=null && Item.Asset.Name == "EggVibePlugXXL") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemDevices";
+        Item = InventoryGet(Player, Target);
+        if (Item!=null && Item.Asset.Name == "Trolley") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
             }, {
                 push: true,
                 refresh: true,
