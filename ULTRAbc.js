@@ -4852,7 +4852,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((InventoryGet(Player, "ItemVulva") == null) ||
                 (InventoryGet(Player, "ItemVulva").Property == null) ||
                 (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
-                InventoryWear(Player, "WiredVibeEgg", "ItemVulva");
+                InventoryWear(Player, "WiredEgg", "ItemVulva");
             }
         }
         InventoryWear(Player, "DuctTape", "ItemHands");
@@ -4882,8 +4882,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemVulva";
         Item = InventoryGet(Player, Target);
-        publicmsg(Item.Asset.Name);
-        if (Item!=null && Item.Asset.Name == "WiredVibeEgg") {
+        if (Item!=null && Item.Asset.Name == "WiredEgg") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4908,7 +4907,54 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     } 
 
-    function TheDisplayFrameTrap(){}
+    function TheDisplayFrameTrap(){
+        let Target = "";
+        let Item = "";
+        CharacterNaked(Player);
+        InventoryWear(Player, "PantyStuffing", "ItemMouth");        
+        //InventoryWear(Player, "ClothGag", "ItemMouth2");
+        //InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "LewdBlindfold", "ItemHead");
+        
+        //InventoryWear(Player, "ToeTie", "ItemBoots");
+        //InventoryWear(Player, "HempRope", "ItemFeet");
+        //InventoryWear(Player, "HempRope", "ItemLegs");
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {
+           
+            if ((InventoryGet(Player, "ItemVulva") == null) ||
+                (InventoryGet(Player, "ItemVulva").Property == null) ||
+                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
+                InventoryWear(Player, "WiredEgg", "ItemVulva");
+            }
+        }
+        InventoryWear(Player, "DuctTape", "ItemHands");
+        InventoryWear(Player, "TheDisplayFrame", "ItemDevices");
+        
+        Target = "ItemMouth2";
+        Item = InventoryGet(Player, Target);
+        publicmsg = (Item.Asset.Name);
+
+
+        Target = "ItemVulva";
+        Item = InventoryGet(Player, Target);
+        if (Item!=null && Item.Asset.Name == "WiredEgg") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+
+        
+                
+        ExclusivePadlock()
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
+    }
     function TrolleyTrap(){}
     function CoffinTrap(){}
 
