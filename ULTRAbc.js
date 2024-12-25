@@ -4867,7 +4867,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
         Target = "ItemNipples";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "TapedVibratingEggs") {
+        if (Item!=null) {
+            publicmsg(Item.Asset.Name);
+        }
+        if (Item!=null && Item.Asset.Name == "TapedVibratingEggs") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
