@@ -2099,7 +2099,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         publicmsg(msg);
                     }
                     if (item2 == "X-Cross") {
-                        XcrossTrap();
+                        //XcrossTrap();
                         let msg = "" + tmpname + " is suddenly trapped on an X-Cross. test";
                         publicmsg(msg);
                     }
