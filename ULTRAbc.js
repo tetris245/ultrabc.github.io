@@ -4912,7 +4912,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let Item = "";
         CharacterNaked(Player);
         InventoryWear(Player, "PantyStuffing", "ItemMouth");        
-        //InventoryWear(Player, "ClothGag", "ItemMouth2");
+        InventoryWear(Player, "HarnessBallGag1", "ItemMouth2");
         //InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
         InventoryWear(Player, "LewdBlindfold", "ItemHead");
         
@@ -4935,8 +4935,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         
         Target = "ItemMouth2";
         Item = InventoryGet(Player, Target);
-        if (Item!=null) publicmsg(Item.Asset.Name);
-        if (Item!=null && Item.Asset.Name == "gag") {
+        if (Item!=null && Item.Asset.Name == "HarnessBallGag1") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 1,
             }, {
