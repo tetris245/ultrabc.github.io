@@ -2099,18 +2099,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         publicmsg(msg);
                     }
                     if (item2 == "X-Cross") {
-                        //XcrossTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on an X-Cross. test";
+                        XcrossTrap();
+                        let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
                         publicmsg(msg);
                     }
 			//Changes
-			if (item2 == "DisplayFrame") {
+			if (item2 == "TheDisplayFrame") {
                         
                         let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
                         publicmsg(msg);
                     }
+                    if (item2 == "Coffin") {
+                        
+                        let msg = "" + tmpname + " is suddenly trapped in a Coffin.";
+                        publicmsg(msg);
+                    }
+                    if (item2 == "Trolley") {
+                        
+                        let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
+                        publicmsg(msg);
+                    }
+                    if (item2 == "WoodenBox") {
+                        
+                        let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
+                        publicmsg(msg);
+                    }
 
-			publicmsg(item2);
+			
                 }
             }
             if (newTile && newTile.OnEnter) newTile.OnEnter();
