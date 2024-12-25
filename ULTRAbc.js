@@ -45,8 +45,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return;
     }
 
-    const UBCver = "4.2";
-    const UBCver0 = "4.1";
+    const UBCver = "4.3";
+    const UBCver0 = "4.2";
     const modApi = bcModSDK.registerMod({
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
