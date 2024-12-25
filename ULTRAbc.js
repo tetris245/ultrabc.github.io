@@ -4964,11 +4964,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function TrolleyTrap(){
         let Target = "";
         let Item = "";
-        CharacterNaked(Player);
-        InventoryWear(Player, "PantyStuffing", "ItemMouth");        
-        InventoryWear(Player, "HarnessBallGag1", "ItemMouth2");
+        CharacterNaked(Player);     
+        InventoryWear(Player, "QualityHarnessGag", "ItemMouth3");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "LewdBlindfold", "ItemHead");
+        //InventoryWear(Player, "LewdBlindfold", "ItemHead");
         
         //InventoryWear(Player, "ToeTie", "ItemBoots");
         //InventoryWear(Player, "HempRope", "ItemFeet");
@@ -4986,10 +4985,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((InventoryGet(Player, "ItemButt") == null) ||
                 (InventoryGet(Player, "ItemButt").Property == null) ||
                 (InventoryGet(Player, "ItemButt").Property.LockedBy == null)) {
-                InventoryWear(Player, "PlugVibe", "ItemButt");
+                InventoryWear(Player, "EggVibePlugXXL", "ItemButt");
             }
         }
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)){
+                InventoryWear(Player, "PolishedChastityBelt", "ItemPelvis");
+            }
         InventoryWear(Player, "DuctTape", "ItemHands");
+        InventoryWear(Player, "ShinyLegBinder", "ItemLegs");
+        InventoryWear(Player, "ShinyStraightjacket", "ItemArms");
         InventoryWear(Player, "Trolley", "ItemDevices");
         
         Target = "ItemMouth3";
@@ -5004,19 +5010,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Target = "ItemLegs";
         Item = InventoryGet(Player, Target);
         if (Item!=null) publicmsg(Item.Asset.Name);
-        Target = "ItemFeet";
+        Target = "ItemBoots";
         Item = InventoryGet(Player, Target);
         if (Item!=null) publicmsg(Item.Asset.Name);
         Target = "ItemButt";
         Item = InventoryGet(Player, Target);
         if (Item!=null) publicmsg(Item.Asset.Name);
-        Target = "ItemVulva";
+        Target = "ItemPelvis";
         Item = InventoryGet(Player, Target);
         if (Item!=null) publicmsg(Item.Asset.Name);
 
-        Target = "ItemMouth2";
+        Target = "ItemMouth3";
         Item = InventoryGet(Player, Target);
-        if (Item!=null && Item.Asset.Name == "HarnessBallGag1") {
+        if (Item!=null && Item.Asset.Name == "QualityHarnessGag") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 1,
             }, {
@@ -5025,9 +5031,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             });
         }
 
-        Target = "ItemVulva";
+        Target = "ItemButt";
         Item = InventoryGet(Player, Target);
-        if (Item!=null && Item.Asset.Name == "WiredEgg") {
+        if (Item!=null && Item.Asset.Name == "EggVibePlugXXL") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
