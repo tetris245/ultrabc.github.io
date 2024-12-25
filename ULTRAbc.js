@@ -2103,6 +2103,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
                         publicmsg(msg);
                     }
+			//Changes
+			if (item2 == "DisplayFrame") {
+                        
+                        let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
+                        publicmsg(msg);
+                    }
                 }
             }
             if (newTile && newTile.OnEnter) newTile.OnEnter();
