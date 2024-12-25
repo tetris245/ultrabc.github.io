@@ -4967,9 +4967,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         CharacterNaked(Player);     
         InventoryWear(Player, "QualityHarnessGag", "ItemMouth3");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        //InventoryWear(Player, "LewdBlindfold", "ItemHead");
+        InventoryWear(Player, "LeatherBlindfold", "ItemHead");
         
-        //InventoryWear(Player, "ToeTie", "ItemBoots");
+        InventoryWear(Player, "LeatherToeCuffs", "ItemBoots");
         //InventoryWear(Player, "HempRope", "ItemFeet");
         //InventoryWear(Player, "HempRope", "ItemLegs");
         if ((InventoryGet(Player, "ItemPelvis") == null) ||
@@ -4995,7 +4995,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             }
         InventoryWear(Player, "DuctTape", "ItemHands");
         InventoryWear(Player, "ShinyLegBinder", "ItemLegs");
-        InventoryWear(Player, "ShinyStraightjacket", "ItemArms");
+        InventoryWear(Player, "ShinyStraitjacket", "ItemArms");
         InventoryWear(Player, "Trolley", "ItemDevices");
         
         Target = "ItemMouth3";
@@ -5023,6 +5023,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Target = "ItemMouth3";
         Item = InventoryGet(Player, Target);
         if (Item!=null && Item.Asset.Name == "QualityHarnessGag") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+
+        Target = "ItemArms";
+        Item = InventoryGet(Player, Target);
+        if (Item!=null && Item.Asset.Name == "ShinyStraitjacket") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 1,
             }, {
