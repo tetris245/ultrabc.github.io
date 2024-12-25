@@ -4828,15 +4828,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
-        InventoryWear(Player, "SockStuffing", "ItemMouth");
-        InventoryWear(Player, "PantiesMask", "ItemMouth2");
-        InventoryWear(Player, "ShoeGag", "ItemMouth3");
+        InventoryWear(Player, "PantyStuffing", "ItemMouth");        
+        InventoryWear(Player, "ClothGag", "ItemMouth2");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "Pantyhose", "ItemHead");
+        //InventoryWear(Player, "Pantyhose", "ItemHead");
         if ((InventoryGet(Player, "ItemBreast") == null) ||
             (InventoryGet(Player, "ItemBreast").Property == null) ||
-            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null)) {
-            InventoryWear(Player, "TickleBra", "ItemBreast");
+            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {
+            if ((InventoryGet(Player, "ItemNipples") == null) ||
+                (InventoryGet(Player, "ItemNipples").Property == null) ||
+                (InventoryGet(Player, "ItemNipples").Property.LockedBy == null)) {
+                InventoryWear(Player, "TapedVibratingEggs", "ItemNipples");
+            }
         }
         InventoryWear(Player, "ToeTie", "ItemBoots");
         InventoryWear(Player, "HempRope", "ItemFeet");
@@ -4847,11 +4851,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             InventoryWear(Player, "HempRope", "ItemPelvis");
         }
         InventoryWear(Player, "DuctTape", "ItemHands");
-        InventoryWear(Player, "PantyhoseBodyOpen", "ItemArms");
+        InventoryWear(Player, "HempRope", "ItemArms");
         InventoryWear(Player, "WoodenBox", "ItemDevices");
-        Target = "ItemBreast";
+        
+        Target = "ItemArms";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "TickleBra") {
+        if (Item.Asset.Name == "HempRope") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+
+        Target = "ItemNipples";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "TapedVibratingEggs") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4859,6 +4875,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
+        
         Target = "ItemDevices";
         Item = InventoryGet(Player, Target);
         if (Item.Asset.Name == "WoodenBox") {
