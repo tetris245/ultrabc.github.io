@@ -4831,7 +4831,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "PantyStuffing", "ItemMouth");        
         InventoryWear(Player, "ClothGag", "ItemMouth2");
         InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        //InventoryWear(Player, "Pantyhose", "ItemHead");
+        InventoryWear(Player, "ClothBlindfold", "ItemHead");
         if ((InventoryGet(Player, "ItemBreast") == null) ||
             (InventoryGet(Player, "ItemBreast").Property == null) ||
             (InventoryGet(Player, "ItemBreast").Property.LockedBy == null) ||
@@ -4839,7 +4839,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((InventoryGet(Player, "ItemNipples") == null) ||
                 (InventoryGet(Player, "ItemNipples").Property == null) ||
                 (InventoryGet(Player, "ItemNipples").Property.LockedBy == null)) {
-                InventoryWear(Player, "TapedVibratingEggs", "ItemNipples");
+                InventoryWear(Player, "TapedVibeEggs", "ItemNipples");
             }
         }
         InventoryWear(Player, "ToeTie", "ItemBoots");
@@ -4849,6 +4849,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             (InventoryGet(Player, "ItemPelvis").Property == null) ||
             (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)) {
             InventoryWear(Player, "HempRope", "ItemPelvis");
+            if ((InventoryGet(Player, "ItemVulva") == null) ||
+                (InventoryGet(Player, "ItemVulva").Property == null) ||
+                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
+                InventoryWear(Player, "WiredVibeEgg", "ItemVulva");
+            }
         }
         InventoryWear(Player, "DuctTape", "ItemHands");
         InventoryWear(Player, "HempRope", "ItemArms");
@@ -4867,10 +4872,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
         Target = "ItemNipples";
         Item = InventoryGet(Player, Target);
-        if (Item!=null) {
-            publicmsg(Item.Asset.Name);
-        }
-        if (Item!=null && Item.Asset.Name == "TapedVibratingEggs") {
+        if (Item!=null && Item.Asset.Name == "TapedVibeEggs") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4878,13 +4880,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-        /*
-            Target = "ItemDevices";
-            Item = InventoryGet(Player, Target);
-            if (Item.Asset.Name == "WoodenBox") {
-                Item.Property.Opacity = 0.66;
-            }
-                */
+        Target = "ItemVulva";
+        Item = InventoryGet(Player, Target);
+        if (Item!=null && Item.Asset.Name == "WiredVibeEgg") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+
+        Target = "ItemDevices";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "WoodenBox") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                opacity: 0.66,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+                
         ExclusivePadlock()
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
