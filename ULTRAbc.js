@@ -2105,22 +2105,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
 			//Changes
 			if (item2 == "TheDisplayFrame") {
-                        
+                        TheDisplayFrameTrap();
                         let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
                         publicmsg(msg);
                     }
                     if (item2 == "Coffin") {
-                        
+                        CoffinTrap(); 
                         let msg = "" + tmpname + " is suddenly trapped in a Coffin.";
                         publicmsg(msg);
                     }
                     if (item2 == "Trolley") {
-                        
+                        TrolleyTrap();
                         let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
                         publicmsg(msg);
                     }
                     if (item2 == "WoodenBox") {
-                        
+                        WoodenBoxTrap();
                         let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
                         publicmsg(msg);
                     }
@@ -4647,15 +4647,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-        setTimeout(function() {
-            for (let A = 0; A < Player.Appearance.length; A++)
-                if (Player.Appearance[A].Asset.AllowLock == true) {
-                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) ||
-                        (Player.Appearance[A].Property == null)) {
-                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
-                    }
-                }
-        }, 2000);
+        ExclusivePadlock()
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
     }
@@ -4731,15 +4723,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-        setTimeout(function() {
-            for (let A = 0; A < Player.Appearance.length; A++)
-                if (Player.Appearance[A].Asset.AllowLock == true) {
-                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) ||
-                        (Player.Appearance[A].Property == null)) {
-                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
-                    }
-                }
-        }, 2000);
+        ExclusivePadlock()
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
     }
@@ -4790,15 +4774,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             });
             Item.Property.Opacity = 0.66;
         }
-        setTimeout(function() {
-            for (let A = 0; A < Player.Appearance.length; A++)
-                if (Player.Appearance[A].Asset.AllowLock == true) {
-                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) ||
-                        (Player.Appearance[A].Property == null)) {
-                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
-                    }
-                }
-        }, 2000);
+        ExclusivePadlock()
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
     }
@@ -4844,6 +4820,62 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
+        ExclusivePadlock()
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
+    }
+    function WoodenBoxTrap(){
+        let Target = "";
+        let Item = "";
+        CharacterNaked(Player);
+        InventoryWear(Player, "SockStuffing", "ItemMouth");
+        InventoryWear(Player, "PantiesMask", "ItemMouth2");
+        InventoryWear(Player, "ShoeGag", "ItemMouth3");
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "Pantyhose", "ItemHead");
+        if ((InventoryGet(Player, "ItemBreast") == null) ||
+            (InventoryGet(Player, "ItemBreast").Property == null) ||
+            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null)) {
+            InventoryWear(Player, "TickleBra", "ItemBreast");
+        }
+        InventoryWear(Player, "ToeTie", "ItemBoots");
+        InventoryWear(Player, "HempRope", "ItemFeet");
+        InventoryWear(Player, "HempRope", "ItemLegs");
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)) {
+            InventoryWear(Player, "HempRope", "ItemPelvis");
+        }
+        InventoryWear(Player, "DuctTape", "ItemHands");
+        InventoryWear(Player, "PantyhoseBodyOpen", "ItemArms");
+        InventoryWear(Player, "WoodenBox", "ItemDevices");
+        Target = "ItemBreast";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "TickleBra") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemDevices";
+        Item = InventoryGet(Player, Target);
+        if (Item.Asset.Name == "WoodenBox") {
+            Item.Property.Opacity = 0.66;
+        }
+        ExclusivePadlock()
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
+    } 
+
+    function TheDisplayFrameTrap(){}
+    function TrolleyTrap(){}
+    function CoffinTrap(){}
+
+
+    //ExclusivePadlock
+    function ExclusivePadlock(){
         setTimeout(function() {
             for (let A = 0; A < Player.Appearance.length; A++)
                 if (Player.Appearance[A].Asset.AllowLock == true) {
@@ -4853,8 +4885,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                 }
         }, 2000);
-        CharacterRefresh(Player);
-        ChatRoomCharacterUpdate(Player);
     }
 
     //Vision
