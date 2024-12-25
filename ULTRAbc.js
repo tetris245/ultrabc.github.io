@@ -4875,12 +4875,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-        
-        Target = "ItemDevices";
-        Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "WoodenBox") {
-            Item.Property.Opacity = 0.66;
-        }
+        /*
+            Target = "ItemDevices";
+            Item = InventoryGet(Player, Target);
+            if (Item.Asset.Name == "WoodenBox") {
+                Item.Property.Opacity = 0.66;
+            }
+                */
         ExclusivePadlock()
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
