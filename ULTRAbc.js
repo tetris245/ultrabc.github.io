@@ -5718,11 +5718,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (a == 2) a1 = 0.35;
         if (a == 3) a1 = 0.5;   
         DrawRect(0, 0, 2000, 1000, `rgba(${r},${g},${b},${a1})`);
-        if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {      
+        /*if (typeof mbs !== 'undefined' && mbs.API_VERSION.major === 1 && mbs.API_VERSION.minor >= 3) {      
             return mbs.css.setStyle({
                 backgroundColor: `rgba(${r},${g},${b},${a1})`, 
            }); 
-        }
+        }*/
     }
 
     //WCE Status 
