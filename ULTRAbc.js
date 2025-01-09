@@ -51,7 +51,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         name: 'ULTRAbc',
         fullName: 'Ultra Bondage Club',
         version: UBCver,
-        repository: 'https://github.com/azt-x/ULTRAbc',
+        repository: 'https://github.com/tetris245/ULTRAbc',
     });
 
     //Main variables and settings for UBC and The Moaner
@@ -89,13 +89,17 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let frname = "BrickWall";
     let gl = 0;
     let hearing = 0;
+    let maptrap1 = 0;
     let mgl = 0;
     let onegl = 0;
     let rsize = 20;
     let rtype = "ALL";
     let st = 0;
     let tcname = "Cell";
+    let tintcolor = "#000000";
+    let tintlevel = 0;
 
+    let AsylumLimitOn;
     let AutojoinOn;
     let DolltalkOn;
     let ExtbuttonsOn;
@@ -108,7 +112,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     let MagiccheatOn;
     let MagictoysOn;
     let MapfullOn = false;
-    let MaptrapOn;
     let NogarbleOn;
     let NostruggleOn;
     let NotimeoutOn;
@@ -432,12 +435,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             frname = "BrickWall";
             gl = 0;
             hearing = 0;
+	    maptrap1 = 0;
             mgl = 0;
             onegl = 0;
             rsize = 20;
             rtype = "ALL";
             st = 0;
             tcname = "Cell";
+	    tintcolor = "#000000";
+            tintlevel = 0;
+	    AsylumLimitOn = false;
             AutojoinOn = false;
             DolltalkOn = false;
             ExtbuttonsOn = false;
@@ -450,7 +457,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MagiccheatOn = false;
             MagictoysOn = false;
             MapfullOn = false;
-            MaptrapOn = false;
             NogarbleOn = false;
             NostruggleOn = false;
             NotimeoutOn = false;
@@ -520,12 +526,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             frname = datas.frname;
             gl = datas.gaglevel;
             hearing = 0;
+	    maptrap1 = datas.maptrap1;
             mgl = 0;
             onegl = 0;
             rsize = datas.rsize;
             rtype = datas.rtype;
             st = datas.stutterlevel * 1;
-            tcname = datas.tcname;
+            tcname = datas.tcname; 
+	    tintcolor = datas.tintcolor;
+	    tintlevel = datas.tintlevel;
+	    AsylumLimitOn = datas.asylumlimit;
             AutojoinOn = datas.autojoin;
             DolltalkOn = datas.dolltalk;
             ExtbuttonsOn = datas.extbuttons;
@@ -538,7 +548,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             MagiccheatOn = datas.magiccheat;
             MagictoysOn = datas.magictoys;
             MapfullOn = false;
-            MaptrapOn = datas.maptrap;
             NogarbleOn = datas.nogarble;
             NostruggleOn = datas.nostruggle;
             NotimeoutOn = datas.notimeout;
@@ -608,10 +617,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "cfame": cfame,
             "frname": frname,
             "gaglevel": gl,
+            "maptrap1": maptrap1,
             "rsize": rsize,
             "rtype": rtype,
             "stutterlevel": st,
             "tcname": tcname,
+            "tintcolor": tintcolor,
+            "tintlevel": tintlevel,
+            "asylumlimit": AsylumLimitOn,
             "autojoin": AutojoinOn,
             "dolltalk": DolltalkOn,
             "extbuttons": ExtbuttonsOn,
@@ -624,7 +637,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             "magiccheat": MagiccheatOn,
             "magictoys": MagictoysOn,
             "mapfull": MapfullOn,
-            "maptrap": MaptrapOn,
             "nogarble": NogarbleOn,
             "nostruggle": NostruggleOn,
             "notimeout": NotimeoutOn,
@@ -704,10 +716,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerAccountUpdate.QueueData({
                     OnlineSharedSettings: Player.OnlineSharedSettings
                 });
-                if (MaptrapOn == null || MaptrapOn == undefined) {
-                    MaptrapOn = false;
-                    M_MOANER_saveControls();
-                }
                 if (animal == null || animal == undefined) animal = 0;
                 if (animal == 1) AnimalTalk1On = true;
                 if (animal == 2) AnimalTalk2On = true;
@@ -718,6 +726,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (animal == 7) AnimalTalk7On = true;
                 if (animal == 8) AnimalTalk8On = true;
                 if (animal == 9) AnimalTalk9On = true;
+		if (AsylumLimitOn == null || AsylumLimitOn == undefined) AsylumLimitOn = false;
                 if (bgall == null || bgall == undefined) bgall = false;
                 if (bl == null || bl == undefined) bl = 0;
                 if (blindness == null || blindness == undefined) blindness = 0;
@@ -740,6 +749,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (HighfameOn == null || HighfameOn == undefined) HighfameOn = false;
                 if (HotkeysOn == null || HotkeysOn == undefined) HotkeysOn = false;
                 if (MagiccheatOn == null || MagiccheatOn == undefined) MagiccheatOn = false;
+		if (MagictoysOn == null || MagictoysOn == undefined) MagictoysOn = false;
+		if (maptrap1 == null || maptrap1 == undefined) maptrap1 = 0;
                 if (M_MOANER_cum == null || M_MOANER_cum == undefined || M_MOANER_cum == true) M_MOANER_cum = false;
                 if (M_MOANER_orgasmActive == null || M_MOANER_orgasmActive == undefined) M_MOANER_orgasmActive = true;
                 if (M_MOANER_scriptOn == null || M_MOANER_scriptOn == undefined) M_MOANER_scriptOn = false;
@@ -777,15 +788,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (SosbuttonsOn == null || SosbuttonsOn == undefined) SosbuttonsOn = false;
                 if (st == null || st == undefined) st = 0;
                 if (tcname == null || tcname == undefined) tcname = "Cell";
+		if (tintcolor == null || tintcolor == undefined) tintcolor = "#000000";
+                if (tintlevel == null || tintlevel == undefined) tintlevel = 0;	
                 M_MOANER_saveControls();
                 BabyTalkOn = false;
                 GagTalkOn = false;
                 if ((gl > 0) && (gl != 11)) GagTalkOn = true;
                 if (gl == 11) BabyTalkOn = true;
-                if (MagictoysOn == null || MagictoysOn == undefined) {
-                    MagictoysOn = false;
-                    M_MOANER_saveControls();
-                }
                 if (rsize == null || rsize == undefined) {
                     rsize = 20;
                     M_MOANER_saveControls();
@@ -839,6 +848,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
             const UBC_DEFAULT_SETTINGS = {
                 animal: 0,
+		asylumlimit: false,
                 bgall: false,
                 bl: 0,
                 blindness: 0,
@@ -859,6 +869,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 highfame: false,
                 hotkeys: false,
                 magiccheat: false,
+		magictoys: false,
+		maptrap1: 0,
                 nogarble: false,
                 nostruggle: false,
                 notalk: 0,
@@ -878,6 +890,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 stutterlevel: 0,
                 talkMoan: true,
                 tickleMoan: true,
+		tintcolor: "#000000",
+                tintlevel: 0,
                 vibeMoan: true,
                 whisperMoan: false,
                 xvibeMoan: false,
@@ -934,6 +948,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 "UBCCards",
                 "UBCCheats",
                 "UBCHotkeys",
+		"UBCMaps",
                 "UBCMisc",
                 "UBCMoaner",
                 "UBCTalking",
@@ -944,6 +959,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 UBCCards: "Cards",
                 UBCCheats: "Cheats",
                 UBCHotkeys: "Hotkeys",
+		UBCMaps: "Maps",
                 UBCMisc: "Misc",
                 UBCMoaner: "Moaner",
                 UBCTalking: "Talking",
@@ -1367,6 +1383,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 Player.UBC.ubcSettings.cum = false;
                 let data = Player.UBC.ubcSettings;
                 animal = data.animal * 1;
+		AsylumLimitOn = data.asylumlimit;
                 bgall = data.bgall;
                 bl = data.bl;
                 blindness = data.blindness;
@@ -1386,6 +1403,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 HighfameOn = data.highfame;
                 HotkeysOn = data.hotkeys;
                 MagiccheatOn = data.magiccheat;
+		MagictoysOn = data.magictoys;
+		maptrap1 = data.maptrap1;
                 M_MOANER_cum = data.cum;
                 M_MOANER_orgasmActive = data.orgasmMoan;
                 M_MOANER_scriptOn = data.script;
@@ -1409,6 +1428,8 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 SlowleaveOn = data.slowleave;
                 SosbuttonsOn = data.sosbuttons;
                 st = data.stutterlevel * 1;
+		tintcolor = data.tintcolor;
+		tintlevel = data.tintlevel;
                 AnimalTalk1On = false;
                 AnimalTalk2On = false;
                 AnimalTalk3On = false;
@@ -1520,6 +1541,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
                 }
+		TintsEffect();
                 UBCPreferenceSubscreen = "";
                 PreferenceMessage = "";
                 PreferenceSubscreenExtensionsClear();
@@ -1682,6 +1704,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 defaultExit();
             }
 
+	    PreferenceSubscreenUBCMapsLoad = function() {
+                UBCPreferenceSubscreen = "UBCMaps";
+                addMenuCheckbox(64, 64, "Add toys under locked chastity in traps: ", "magictoys",
+                    "Enable this option if you accept that the traps in map rooms can add toys under locked chastity, with all the consequences you can have later with your owner or lovers for example!", false, 140
+                );
+                addMenuInput(200, "Selected device trap (0-9):", "maptrap1", "InputDeviceTrap",
+                    "Input a number between 0 and 9, except 2, to select a device trap: 0 No device trap - 1 Bondage Bench - 3 Display Frame - 4 Kennel - 5 Locker - 6 Trolley - 7 Wooden Box - 8 X-Cross - 9 ALL THE DEVICE TRAPS. When a trap is enabled, you will be automatically bound if you walk on the device!", 6
+                );
+            }
+
+            PreferenceSubscreenUBCMapsRun = function() {
+                drawMenuElements();
+            }
+
+            PreferenceSubscreenUBCMapsClick = function() {
+                handleMenuClicks();
+            }
+
+            PreferenceSubscreenUBCMapsExit = function() {
+                let device = ElementValue("InputDeviceTrap");
+                if ((CommonIsNumeric(device)) && (profile > -1) && (device < 10) && (device != 2)) {
+                    Player.UBC.ubcSettings.maptrap1 = device;
+                    ElementRemove("InputDeviceTrap");
+                    defaultExit();
+                } else PreferenceMessage = "Put a valid number";
+            }
+
             PreferenceSubscreenUBCMiscLoad = function() {
                 UBCPreferenceSubscreen = "UBCMisc";
                 addMenuCheckbox(64, 64, "Access all backgrounds in Private Room: ", "bgall",
@@ -1692,6 +1741,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 );
                 addMenuCheckbox(64, 64, "No time out in help provided by TAB: ", "notimeout",
                     "When you use the TAB key to get help about BC commands, the displayed results are removed from the chat after some time. If you don't like that, use this option to prevent the disappearance of the help results.", false, 120
+                );
+                addMenuCheckbox(64, 64, "Enable Asylum limitations: ", "asylumlimit",
+                    "By default, UBC disables the Asylum limitations (access to, exit from). If you like these limitations, you can enable them again with this option.", false, 120
                 );
                 addMenuCheckbox(64, 64, "Enable punishments by NPC: ", "npcpunish",
                     "By default, UBC disables the automatic punishments by NPC (especially when you are bound in a room and call a maid for help). If you like these punishments, you can enable them again with this option.", false, 120
@@ -1809,16 +1861,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 } else PreferenceMessage = "Put a valid number";
             }
 
-            PreferenceSubscreenUBCVisualLoad = function() {
+	    PreferenceSubscreenUBCVisualLoad = function() {
                 UBCPreferenceSubscreen = "UBCVisual";
                 addMenuInput(200, "Forced blindness mode (1-4):", "blindness", "InputBlindnessMode",
-                    "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
+                    "Input a number between 1 and 4 to select one of these forced 'permanent' blindness modes, ignoring your real state: 1 No blindness - 2 Light blindness -  3 Normal blindness - 4 Heavy blindness. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 60
                 );
                 addMenuInput(200, "Forced blurry vision (1-5):", "blurmode", "InputBlurMode",
-                    "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", -16
+                    "Input a number between 1 and 5 to select one of these forced 'permanent' blurry vision modes, ignoring your real state: 1 No blurry vision - 2 Light blurry vision -  3 Normal blurry vision - 4 Heavy blurry version - 5 Total blurry vision. Note that you will need to make a full relog to leave this special mode (if you input 0, it will have no any effect). This mode can trigger a BCX warning. Just ignore it (close the breaking message)!", 60
                 );
                 addMenuInput(200, "Forced global blur level (0-4):", "blureffect", "InputBlurEffect",
-                    "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blur effect. Note that all will be blurred, also your own character!", -16
+                    "Input a number between 0 and 4 to select one of these forced 'permanent' global blur levels: 0 No blur effect - 1 Light blur effect - 2 Normal blur effect - 3 Heavy blur effect - 4 Total blur effect. Note that all will be blurred, also your own character!", 60
+                );
+                addMenuInput(200, "Tint effect level (0-3):", "tintlevel", "InputTintLevel",
+                    "Input a number between 0 and 3 to select one of these forced 'permanent' tint effect levels: 0 No tint effect - 1 Light tint effect - 2 Medium tint effect - 3 Heavy tint effect.", 60
+                );
+                addMenuInput(200, "Tint effect color (format #000000):", "tintcolor", "InputTintColor",
+                    "Input a color code in the hexadecimal format #000000 to apply a tint effect almost everywhere in the Bondage Club. Don't forget to select a tint effect level too! The tint effect will also be applied on pages created by most add-ons. Known exceptions are BCX, MBS and Echo's mod. The final color can be different when mixed with a Themed color.", 60
                 );
             }
 
@@ -1834,19 +1892,28 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 let blmode = ElementValue("InputBlindnessMode");
                 let brmode = ElementValue("InputBlurMode");
                 let effect = ElementValue("InputBlurEffect");
+                let regex = /^#(([0-9a-f]{3})|([0-9a-f]{6}))$/i;
+                let ttcolor = ElementValue("InputTintColor");
+                let ttlevel = ElementValue("InputTintLevel");
                 if ((CommonIsNumeric(blmode)) && (blmode > -1) && (blmode < 5) &&
                     (CommonIsNumeric(brmode)) && (brmode > -1) && (brmode < 6) &&
-                    (CommonIsNumeric(effect)) && (effect > -1) && (effect < 5)) {
+                    (CommonIsNumeric(effect)) && (effect > -1) && (effect < 5) && 
+                    (CommonIsNumeric(ttlevel)) && (ttlevel > -1) && (ttlevel < 4) && 
+                    (ttcolor.startsWith("#")) && (ttcolor.match(regex))) {
                     Player.UBC.ubcSettings.blindness = blmode;
                     Player.UBC.ubcSettings.blureffect = effect;
                     Player.UBC.ubcSettings.blurmode = brmode;
+                    Player.UBC.ubcSettings.tintcolor = ttcolor;
+                    Player.UBC.ubcSettings.tintlevel = ttlevel;
                     ElementRemove("InputBlindnessMode");
                     ElementRemove("InputBlurEffect");
                     ElementRemove("InputBlurMode");
+                    ElementRemove("InputTintColor");
+                    ElementRemove("InputTintLevel");
                     defaultExit();
                 } else PreferenceMessage = "Put a valid number";
             }
-
+   
             function keyHandler(e) {
                 if (e.key === "Escape" && !!UBCPreferenceSubscreen && UBCPreferenceSubscreen !== "UBCSettings") {
                     CommonCallFunctionByName(`PreferenceSubscreen${UBCPreferenceSubscreen}Exit`);
@@ -1921,6 +1988,70 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAStruggleMinigameWasInterrupted();
     ULTRATitleExit();
 
+    ULTRAArcadeRun();
+    ULTRAAsylumBedroomRun();
+    ULTRAAsylumEntranceRun();
+    ULTRAAsylumGGTSRun();
+    ULTRAAsylumMeetingRun();
+    ULTRAAsylumTherapyRun();
+    ULTRACafeRun();    
+    ULTRAChatAdminRun();
+    ULTRAChatAdminRoomCustomizationRun(); 
+    ULTRAChatSelectRun();
+    ULTRAChestLockpickRun(); 
+    ULTRAClubCardBuilderRun(); 
+    ULTRAClubCardLoungeRun();
+    ULTRAClubCardRun();
+    ULTRACollegeCafeteriaRun(); 
+    ULTRACollegeChessRun(); 
+    ULTRACollegeDetentionRun(); 
+    ULTRACollegeEntranceRun(); 
+    ULTRACollegeTeacherRun(); 
+    ULTRACollegeTennisRun(); 
+    ULTRACollegeTheaterRun(); 
+    ULTRACraftingRun();
+    ULTRADojoStruggleRun();
+    ULTRAGamblingRun();
+    ULTRAGetUpRun();
+    ULTRAHorseWalkRun();
+    ULTRAInfiltrationRun();
+    ULTRAInformationSheetRun(); 
+    ULTRAIntroductionRun(); 
+    ULTRAKidnapLeagueRun(); 
+    ULTRAKidnapRun(); 
+    ULTRALARPRun();
+    ULTRAMagicRun(); 
+    ULTRAMagicBattleRun(); 
+    ULTRAMagicSchoolEscapeRun();
+    ULTRAMagicSchoolLaboratoryRun();
+    ULTRAMaidCleaningRun();
+    ULTRAMaidDrinksRun();
+    ULTRAMaidQuartersRun(); 
+    ULTRAManagementRun(); 
+    ULTRAMovieStudioRun(); 
+    ULTRANurseryRun(); 
+    ULTRAOnlineProfileRun();
+    ULTRAPandoraRun();
+    ULTRAPlatformIntroRun(); 
+    ULTRAPlatformDialogRun(); 
+    ULTRAPlatformProfileRun(); 
+    ULTRAPlatformRun(); 
+    ULTRAPlayerAuctionRun(); 
+    ULTRAPokerRun();
+    ULTRAPrisonRun();
+    ULTRAPuppyWalkerRun(); 
+    ULTRARhythmGameRun() 
+    ULTRASarahRun();
+    ULTRAShibariRun(); 
+    ULTRAShopRun();
+    ULTRASlaveAuctionRun(); 
+    ULTRASlaveMarketRun();
+    ULTRAStableRun();
+    ULTRATennisRun(); 
+    ULTRATherapyRun(); 
+    ULTRATitleRun();
+    ULTRAWheelFortuneRun();
+  
     //Bondage Brawl
     async function ULTRAPlatformAttack() {
         modApi.hookFunction('PlatformAttack', 4, (args, next) => {
@@ -2079,53 +2210,43 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             ChatRoomMapViewCalculatePerceptionMasks();
             const newTile = ChatRoomMapViewGetTileAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
             const newObject = ChatRoomMapViewGetObjectAtPos(Player.MapData.Pos.X, Player.MapData.Pos.Y);
-            if (MaptrapOn) {
-                let item1 = newObject.Type;
-                let item2 = newObject.Style;
-                if ((item1 == "FloorItem") && (item2 != "Blank")) {
-                    if (item2 == "BondageBench") {
-                        BondagebenchTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
-                        publicmsg(msg);
-                    }
-                    if (item2 == "Kennel") {
-                        KennelTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Kennel.";
-                        publicmsg(msg);
-                    }
-                    if (item2 == "Locker") {
-                        LockerTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Locker.";
-                        publicmsg(msg);
-                    }
-                    if (item2 == "X-Cross") {
-                        XcrossTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
-                        publicmsg(msg);
-                    }
-			//Changes
-			if (item2 == "TheDisplayFrame") {
-                        TheDisplayFrameTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
-                        publicmsg(msg);
-                    }
-                    /*if (item2 == "Coffin") {
-                        CoffinTrap(); 
-                        let msg = "" + tmpname + " is suddenly trapped in a Coffin.";
-                        publicmsg(msg);
-                    }*/
-                    if (item2 == "Trolley") {
-                        TrolleyTrap();
-                        let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
-                        publicmsg(msg);
-                    }
-                    if (item2 == "WoodenBox") {
-                        WoodenBoxTrap();
-                        let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
-                        publicmsg(msg);
-                    }
-
-			
+	    let item1 = newObject.Type;
+            let item2 = newObject.Style;
+            if ((item1 == "FloorItem") && (item2 != "Blank")) {
+                if ((item2 == "BondageBench") && ((maptrap1 == 1) || (maptrap1 == 9))) {
+                    BondageBenchTrap();
+                    let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "TheDisplayFrame") && ((maptrap1 == 3) || (maptrap1 == 9))) {
+                    DisplayFrameTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "Kennel") && ((maptrap1 == 4) || (maptrap1 == 9))) {
+                    KennelTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Kennel.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "Locker") && ((maptrap1 == 5) || (maptrap1 == 9))) {
+                    LockerTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Locker.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "Trolley") && ((maptrap1 == 6) || (maptrap1 == 9))) {
+                    TrolleyTrap();
+                    let msg = "" + tmpname + " is suddenly trapped on a Trolley.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "WoodenBox") && ((maptrap1 == 7) || (maptrap1 == 9))) {
+                    WoodenBoxTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Wooden Box.";
+                    publicmsg(msg);
+                }
+                if ((item2 == "X-Cross") && ((maptrap1 == 8) || (maptrap1 == 9))) {
+                    XCrossTrap();
+                    let msg = "" + tmpname + " is suddenly trapped on an X-Cross.";
+                    publicmsg(msg);
                 }
             }
             if (newTile && newTile.OnEnter) newTile.OnEnter();
@@ -2136,6 +2257,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatRoomMenuDraw() {
         modApi.hookFunction('ChatRoomMenuDraw', 4, (args, next) => {
+	    TintsEffect(); 
             if (kp != 1) {
                 if (tmpname == "") {
                     if (Player.Nickname == '') {
@@ -2609,12 +2731,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ChatSelectStartSearch(ChatRoomSpace);
             }
             if ((MouseX >= 1515) && (MouseX < 1595) && (MouseY >= 885) && (MouseY < 975)) {
-                if (IsFemale() == true) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
+                 if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
             }
-            if ((MouseX >= 1625) && (MouseX < 1715) && (MouseY >= 885) && (MouseY < 975)) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
-            if ((MouseX >= 1735) && (MouseX < 1825) && (MouseY >= 885) && (MouseY < 975)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+            if ((MouseX >= 1625) && (MouseX < 1715) && (MouseY >= 885) && (MouseY < 975)) {
+                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+            }
+            if ((MouseX >= 1735) && (MouseX < 1825) && (MouseY >= 885) && (MouseY < 975)) { 
+                if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
+            }
             if ((MouseX >= 1845) && (MouseX < 1935) && (MouseY >= 885) && (MouseY < 975)) {
-                if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
+                 if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
             }
             return;
         });
@@ -2628,14 +2754,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawButton(605, 885, 90, 90, "", "White", "Icons/MapTypeHybrid.png", "Hybrid Rooms");
             DrawButton(715, 885, 90, 90, "", "White", "Icons/MapTypeAlways.png", "Map Rooms");
             DrawText("Lobbies", 1405, 940, "White", "Black");
-            if (IsFemale() == true) {
+            if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                 DrawButton(1515, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
             } else {
                 DrawButton(1515, 885, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "Only Female");
             }
-            DrawButton(1625, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
-            DrawButton(1735, 885, 90, 90, "MIXED", "White", "", "Mixed");
-            if (IsMale() == true) {
+            if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum"))  {     
+                DrawButton(1625, 885, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            } else {
+                DrawButton(1625, 885, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
+            }
+            if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum")))  {     
+                DrawButton(1735, 885, 90, 90, "MIXED", "White", "", "Mixed");
+            } else {
+                DrawButton(1735, 885, 90, 90, "MIXED", "Gray", "", "Mixed");
+            }
+            if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                 DrawButton(1845, 885, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
             } else {
                 DrawButton(1845, 885, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Male.png", "Only Male");
@@ -2646,6 +2780,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
     async function ULTRAChatSearchRun() {
         modApi.hookFunction('ChatSearchRun', 4, (args, next) => {
+	    TintsEffect(); 
             KidnapLeagueResetOnlineBountyProgress();
             if (ChatSearchFilterHelpActive) return ChatSearchFilterHelpDraw();
             if (ChatSearchFilterUnhideConfirm) return ChatSearchFilterUnhideConfirmDraw();
@@ -2820,6 +2955,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     async function ULTRAFriendListDraw() {
         modApi.hookFunction('FriendListDraw', 4, (args, next) => {
             FriendListBackground = frname;
+	    TintsEffect(); 
             next(args);
         });
     }
@@ -2831,13 +2967,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             const beepTextArea = /** @type {HTMLTextAreaElement} */ (document.getElementById(FriendListIDs.beepTextArea));
             const beepTextAreaHasFocus = beepTextArea && document.activeElement === beepTextArea;
             if (FriendListBeepTarget !== -1 || beepTextArea) {
-                if (event.key === 'Escape' && !event.shiftKey) {
+                if (CommonKey.IsPressed(event, "Escape")) {
                     FriendListBeepMenuClose();
                     return true;
                 }
             }
             if (beepTextAreaHasFocus) {
-                if (event.key === 'Enter' && event.ctrlKey) {
+                if (event.key === 'Enter' && CommonKey.IsPressed(event, "Enter", CommonKey.CTRL)) {
                     FriendListBeepMenuSend();
                     return true;
                 }
@@ -2845,7 +2981,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (FrkeysOn == true) {
                 if ((FriendListModeIndex == 0) && (!searchInputHasFocus) && (!beepTextAreaHasFocus)) {
                     if (event.code === "KeyF") {
-                        if (IsFemale() == true) {
+                        if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                             ChatRoomSpace = "";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -2854,14 +2990,16 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (event.code === "KeyG") {
-                        ChatRoomSpace = "X";
-                        ServerSend("AccountQuery", {
-                            Query: "OnlineFriends"
-                        });
-                        return true;
+                        if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
+                            ChatRoomSpace = "X";
+                            ServerSend("AccountQuery", {
+                                Query: "OnlineFriends"
+                            });
+                            return true;
+                        }
                     }
                     if (event.code === "KeyH") {
-                        if (IsMale() == true) {
+                        if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                             ChatRoomSpace = "M";
                             ServerSend("AccountQuery", {
                                 Query: "OnlineFriends"
@@ -2870,11 +3008,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         }
                     }
                     if (event.code === "KeyJ") {
-                        ChatRoomSpace = "Asylum";
-                        ServerSend("AccountQuery", {
-                            Query: "OnlineFriends"
-                        });
-                        return true;
+                        if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
+                            ChatRoomSpace = "Asylum";
+                            ServerSend("AccountQuery", {
+                                Query: "OnlineFriends"
+                            });
+                            return true;
+                        }
                     }
                 }
             }
@@ -2979,7 +3119,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((MouseX >= 240) && (MouseX < 330) && (MouseY >= 475) && (MouseY < 565)) {
                 if (IsFemale() == true) ChatSelectStartSearch(ChatRoomSpaceType.FEMALE_ONLY);
             }
-            if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);
+            if ((MouseX >= 350) && (MouseX < 440) && (MouseY >= 475) && (MouseY < 565)) {
+                if (AsylumLimitOn == false) ChatSelectStartSearch(ChatRoomSpaceType.ASYLUM);  
+            }
             if ((MouseX >= 460) && (MouseX < 550) && (MouseY >= 475) && (MouseY < 565)) ChatSelectStartSearch(ChatRoomSpaceType.MIXED);
             if ((MouseX >= 570) && (MouseX < 660) && (MouseY >= 475) && (MouseY < 565)) {
                 if (IsMale() == true) ChatSelectStartSearch(ChatRoomSpaceType.MALE_ONLY);
@@ -2996,13 +3138,18 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('MainHallRun', 4, (args, next) => {
             ChatRoomActivateView(ChatRoomCharacterViewName);
             MainCanvas.textAlign = "center";
+	    TintsEffect(); 
             DrawText("Chat Rooms", 130, 530, "White", "Black");
             if (IsFemale() == true) {
                 DrawButton(240, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Female.png", "Only Female");
             } else {
                 DrawButton(240, 475, 90, 90, "", "Gray", "Screens/Online/ChatSelect/Female.png", "Only Female");
             }
-            DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            if (AsylumLimitOn == true) {
+                DrawButton(350, 475, 90, 90, "", "Gray", "Icons/Asylum.png", "Asylum");
+            } else {
+                DrawButton(350, 475, 90, 90, "", "White", "Icons/Asylum.png", "Asylum");
+            } 
             DrawButton(460, 475, 90, 90, "MIXED", "White", "", "Mixed");
             if (IsMale() == true) {
                 DrawButton(570, 475, 90, 90, "", "White", "Screens/Online/ChatSelect/Male.png", "Only Male");
@@ -3114,6 +3261,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawText(PandoraWillpower.toString(), 1800, 973, "black", "white");
             if (SosbuttonsOn == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
+	    TintsEffect(); 
             return;
         });
     }
@@ -3135,6 +3283,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('PhotographicRun', 4, (args, next) => {
             if (SosbuttonsOn == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
+	    TintsEffect(); 
             next(args);
         });
     }
@@ -3182,6 +3331,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if ((name != "Extensions") || ((name == "Extensions") && (PreferenceExtensionsCurrent == null))) {
                 DrawButton(1815, 780, 90, 90, "BACK", "White", "");
             }
+	    TintsEffect(); 
             next(args);
         });
     }
@@ -3282,6 +3432,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 DrawImageResize("Icons/FriendList.png", 0, 900, 48, 48);
                 DrawImageResize("Icons/Cell.png", 0, 950, 48, 48);
             }
+	    TintsEffect(); 
             next(args);
         });
     }
@@ -3318,11 +3469,173 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('CellRun', 4, (args, next) => {
             if (SosbuttonsOn == true) SosButtons();
             if (OutbuttonsOn == true) OutButtons();
+	    TintsEffect(); 
             next(args);
         });
     }
 
     //Vision
+    async function ULTRAArcadeRun() {
+        modApi.hookFunction('ArcadeRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAAsylumBedroomRun() {
+        modApi.hookFunction('AsylumBedroomRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAAsylumEntranceRun() {
+        modApi.hookFunction('AsylumEntranceRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAAsylumGGTSRun() {
+        modApi.hookFunction('AsylumGGTSRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAAsylumMeetingRun() {
+        modApi.hookFunction('AsylumMeetingRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAAsylumTherapyRun() {
+        modApi.hookFunction('AsylumTherapyRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACafeRun() {
+        modApi.hookFunction('CafeRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAChatAdminRun() {
+        modApi.hookFunction('ChatAdminRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAChatAdminRoomCustomizationRun() {
+        modApi.hookFunction('ChatAdminRoomCustomizationRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAChatSelectRun() {
+        modApi.hookFunction('ChatSelectRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAChestLockpickRun() {
+        modApi.hookFunction('ChestLockpickRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAClubCardBuilderRun() {
+        modApi.hookFunction('ClubCardBuilderRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAClubCardLoungeRun() {
+        modApi.hookFunction('ClubCardLoungeRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAClubCardRun() {
+        modApi.hookFunction('ClubCardRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeCafeteriaRun() {
+        modApi.hookFunction('CollegeCafeteriaRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeChessRun() {
+        modApi.hookFunction('CollegeChessRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeDetentionRun() {
+        modApi.hookFunction('CollegeDetentionRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeEntranceRun() {
+        modApi.hookFunction('CollegeEntranceRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeTeacherRun() {
+        modApi.hookFunction('CollegeTeacherRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeTennisRun() {
+        modApi.hookFunction('CollegeTennisRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACollegeTheaterRun() {
+        modApi.hookFunction('CollegeTheaterRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRACraftingRun() {
+        modApi.hookFunction('CraftingRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRADojoStruggleRun() {
+        modApi.hookFunction('DojoStruggleRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
     async function ULTRADrawCharacter() {
         modApi.hookFunction('DrawCharacter', 4, (args, next) => {
             if (Player.UBC != undefined) {
@@ -3341,25 +3654,293 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (Player.UBC.ubcSettings != undefined) {
                     let effect = Player.UBC.ubcSettings.blureffect * 1;
                     if (effect != 0) BlurEffect();
-                }
+                }            
             }
             next(args);
         });
     }
 
+    async function ULTRAGamblingRun() {
+        modApi.hookFunction('GamblingRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAGetUpRun() {
+        modApi.hookFunction('GetUpRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAHorseWalkRun() {
+        modApi.hookFunction('HorseWalkRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAInfiltrationRun() {
+        modApi.hookFunction('InfiltrationRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAInformationSheetRun() {
+        modApi.hookFunction('InformationSheetRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAIntroductionRun() {
+        modApi.hookFunction('IntroductionRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAKidnapLeagueRun() {
+        modApi.hookFunction('KidnapLeagueRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAKidnapRun() {
+        modApi.hookFunction('KidnapRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRALARPRun() {
+        modApi.hookFunction('LARPRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMagicBattleRun() {
+        modApi.hookFunction('MagicBattleRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMagicRun() {
+        modApi.hookFunction('MagicRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMagicSchoolEscapeRun() {
+        modApi.hookFunction('MagicSchoolEscapeRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMagicSchoolLaboratoryRun() {
+        modApi.hookFunction('MagicSchoolLaboratoryRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMaidCleaningRun() {
+        modApi.hookFunction('MaidCleaningRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMaidDrinksRun() {
+        modApi.hookFunction('MaidDrinksRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMaidQuartersRun() {
+        modApi.hookFunction('MaidQuartersRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAManagementRun() {
+        modApi.hookFunction('ManagementRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAMovieStudioRun() {
+        modApi.hookFunction('MovieStudioRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRANurseryRun() {
+        modApi.hookFunction('NurseryRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAOnlineProfileRun() {
+        modApi.hookFunction('OnlineProfileRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPandoraRun() {
+        modApi.hookFunction('PandoraRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPlatformDialogRun() {
+        modApi.hookFunction('PlatformDialogRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPlatformIntroRun() {
+        modApi.hookFunction('PlatformIntroRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPlatformProfileRun() {
+        modApi.hookFunction('PlatformProfileRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPlatformRun() {
+        modApi.hookFunction('PlatformRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPlayerAuctionRun() {
+        modApi.hookFunction('PlayerAuctionRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPokerRun() {
+        modApi.hookFunction('PokerRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPrisonRun() {
+        modApi.hookFunction('PrisonRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAPuppyWalkerRun() {
+        modApi.hookFunction('PuppyWalkerRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRARhythmGameRun() {
+        modApi.hookFunction('RhythmGameRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRASarahRun() {
+        modApi.hookFunction('SarahRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAShibariRun() {
+        modApi.hookFunction('ShibariRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAShopRun() {
+        modApi.hookFunction('ShopRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRASlaveAuctionRun() {
+        modApi.hookFunction('SlaveAuctionRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRASlaveMarketRun() {
+        modApi.hookFunction('SlaveMarketRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAStableRun() {
+        modApi.hookFunction('StableRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRATennisRun() {
+        modApi.hookFunction('TennisRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRATherapyRun() {
+        modApi.hookFunction('TherapyRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRATitleRun() {
+        modApi.hookFunction('TitleRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+
+    async function ULTRAWheelFortuneRun() {
+        modApi.hookFunction('WheelFortuneRun', 4, (args, next) => {          
+            TintsEffect(); 
+            next(args);
+        });
+    }
+	
     //Wardrobe
-    async function ULTRAAppearanceRun() {
-        modApi.hookFunction('AppearanceRun', 4, (args, next) => {
-            if (CharacterAppearanceMode == "Wardrobe") {
-                DrawButton(1510, 240, 100, 60, "Export", "#50E992", "", "Full ULTRAbc Export");
-                DrawButton(1630, 240, 100, 60, "Import1", "#50E992", "", "Clothing + Restraints");
-                DrawButton(1750, 240, 100, 60, "Import2", "#50E992", "", "Clothing + Restraints + Cosplay");
-                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Full ULTRAbc Import");
-            }
-            next(args);
-        });
-    }
-
     async function ULTRAAppearanceClick() {
         modApi.hookFunction('AppearanceClick', 4, (args, next) => {
             let C = CharacterAppearanceSelection;
@@ -3507,6 +4088,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     }
                     DialogLeave();
                 }
+            }
+            next(args);
+        });
+    }
+
+    async function ULTRAAppearanceRun() {
+        modApi.hookFunction('AppearanceRun', 4, (args, next) => {
+            TintsEffect(); 
+            if (CharacterAppearanceMode == "Wardrobe") {
+                DrawButton(1510, 240, 100, 60, "Export", "#50E992", "", "Full ULTRAbc Export");
+                DrawButton(1630, 240, 100, 60, "Import1", "#50E992", "", "Clothing + Restraints");
+                DrawButton(1750, 240, 100, 60, "Import2", "#50E992", "", "Clothing + Restraints + Cosplay");
+                DrawButton(1870, 240, 100, 60, "Import3", "#50E992", "", "Full ULTRAbc Import");
             }
             next(args);
         });
@@ -4237,7 +4831,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let msg1 = "No traps with devices in map rooms.";
         let msg2 = "No magic toys added under locked chastity for trap mode.";
         if (MaptrapOn) msg1 = "Traps in map rooms if you 'walk' on devices.";
-        if (MagiccheatOn) msg2 = "Magic toys added under locked chastity for trap mode.";
+        if (MagictoysOn) msg2 = "Magic toys added under locked chastity for trap mode.";
         msg = msg1 + " " + msg2;
         statusmsg(msg);
     }
@@ -4608,7 +5202,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Traps
-    function BondagebenchTrap() {
+    function BondageBenchTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
@@ -4629,7 +5223,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "DeepthroatGag", "ItemMouth");
         Target = "ItemDevices";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "BondageBench") {
+        if (Item != null && Item.Asset.Name == "BondageBench") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 4,
             }, {
@@ -4639,7 +5233,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemVulva";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "VibratingLatexPanties") {
+        if (Item != null && Item.Asset.Name == "VibratingLatexPanties") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4647,9 +5241,65 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-        ExclusivePadlock()
+        ExclusivePadlock();
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
+    }
+
+    function DisplayFrameTrap() {
+        let Target = "";
+        let Item = "";
+        CharacterNaked(Player);
+        InventoryWear(Player, "PantyStuffing", "ItemMouth");        
+        InventoryWear(Player, "HarnessBallGag1", "ItemMouth2");
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "LewdBlindfold", "ItemHead");
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {        
+            if ((InventoryGet(Player, "ItemVulva") == null) ||
+                (InventoryGet(Player, "ItemVulva").Property == null) ||
+                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
+                InventoryWear(Player, "WiredEgg", "ItemVulva");
+            }
+        }
+        InventoryWear(Player, "DuctTape", "ItemHands");
+        InventoryWear(Player, "TheDisplayFrame", "ItemDevices");      
+        Target = "ItemMouth2";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "HarnessBallGag1") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemVulva";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "WiredEgg") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }          
+        ExclusivePadlock();
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
+    }
+
+    function ExclusivePadlock() {
+        setTimeout(function() {
+            for (let A = 0; A < Player.Appearance.length; A++)
+                if (Player.Appearance[A].Asset.AllowLock == true) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
+                    }
+                }
+        }, 2000);
     }
 
     function KennelTrap() {
@@ -4684,7 +5334,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "Kennel", "ItemDevices");
         Target = "ItemNipples";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "VibeNippleClamp") {
+        if (Item != null && Item.Asset.Name == "VibeNippleClamp") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4694,7 +5344,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemVulva";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "ClitoralStimulator") {
+        if (Item != null && Item.Asset.Name == "ClitoralStimulator") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4704,7 +5354,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemMouth";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "DildoPlugGag") {
+        if (Item != null && Item.Asset.Name == "DildoPlugGag") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 1,
             }, {
@@ -4714,7 +5364,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemDevices";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "Kennel") {
+        if (Item != null && Item.Asset.Name == "Kennel") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 d: 1,
                 p: 1,
@@ -4723,7 +5373,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-        ExclusivePadlock()
+        ExclusivePadlock();
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
     }
@@ -4755,7 +5405,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         InventoryWear(Player, "Locker", "ItemDevices");
         Target = "ItemBreast";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "TickleBra") {
+        if (Item != null && Item.Asset.Name == "TickleBra") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4765,7 +5415,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemDevices";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "Locker") {
+        if (Item != null && Item.Asset.Name == "Locker") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 1,
             }, {
@@ -4774,45 +5424,66 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             });
             Item.Property.Opacity = 0.66;
         }
-        ExclusivePadlock()
+        ExclusivePadlock();
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
     }
 
-    function XcrossTrap() {
+    function TrolleyTrap() {
         let Target = "";
         let Item = "";
-        CharacterNaked(Player);
-        InventoryWear(Player, "LeatherDeluxeCuffs", "ItemArms");
-        InventoryWear(Player, "LeatherDeluxeAnkleCuffs", "ItemFeet");
-        InventoryWear(Player, "X-Cross", "ItemDevices");
-        InventoryWear(Player, "PaddedLeatherMittens", "ItemHands");
-        if ((InventoryGet(Player, "ItemBreast") == null) ||
-            (InventoryGet(Player, "ItemBreast").Property == null) ||
-            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {
-            if ((InventoryGet(Player, "ItemNipples") == null) ||
-                (InventoryGet(Player, "ItemNipples").Property == null) ||
-                (InventoryGet(Player, "ItemNipples").Property.LockedBy == null)) {
-                InventoryWear(Player, "ChainClamp", "ItemNipples");
+        CharacterNaked(Player);     
+        InventoryWear(Player, "QualityHarnessGag", "ItemMouth3");
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "LeatherBlindfold", "ItemHead");   
+        InventoryWear(Player, "LeatherToeCuffs", "ItemBoots");
+        if ((InventoryGet(Player, "ItemPelvis") == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property == null) ||
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {       
+            if ((InventoryGet(Player, "ItemVulva") == null) ||
+                (InventoryGet(Player, "ItemVulva").Property == null) ||
+                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
+                InventoryWear(Player, "PenisDildo", "ItemVulva");
+            }
+            if ((InventoryGet(Player, "ItemButt") == null) ||
+                (InventoryGet(Player, "ItemButt").Property == null) ||
+                (InventoryGet(Player, "ItemButt").Property.LockedBy == null)) {
+                InventoryWear(Player, "EggVibePlugXXL", "ItemButt");
             }
         }
         if ((InventoryGet(Player, "ItemPelvis") == null) ||
             (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {
-            if ((InventoryGet(Player, "ItemVulva") == null) ||
-                (InventoryGet(Player, "ItemVulva").Property == null) ||
-                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
-                InventoryWear(Player, "HempRopeBelt", "ItemVulva");
-            }
+            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)){
+            InventoryWear(Player, "PolishedChastityBelt", "ItemPelvis");
         }
-        InventoryWear(Player, "HarnessBallGag1", "ItemMouth");
-        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "PaddedBlindfold", "ItemHead");
-        Target = "ItemVulva";
+        InventoryWear(Player, "DuctTape", "ItemHands");
+        InventoryWear(Player, "ShinyLegBinder", "ItemLegs");
+        InventoryWear(Player, "ShinyStraitjacket", "ItemArms");
+        InventoryWear(Player, "Trolley", "ItemDevices");
+        Target = "ItemMouth3";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "HempRopeBelt") {
+        if (Item != null && Item.Asset.Name == "QualityHarnessGag") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemArms";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "ShinyStraitjacket") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemButt";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "EggVibePlugXXL") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4820,11 +5491,22 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-        ExclusivePadlock()
+        Target = "ItemDevices";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "Trolley") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        ExclusivePadlock();
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
     }
-    function WoodenBoxTrap(){
+
+    function WoodenBoxTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
@@ -4857,11 +5539,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         InventoryWear(Player, "DuctTape", "ItemHands");
         InventoryWear(Player, "HempRope", "ItemArms");
-        InventoryWear(Player, "WoodenBox", "ItemDevices");
-        
+        InventoryWear(Player, "WoodenBox", "ItemDevices"); 
         Target = "ItemArms";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "HempRope") {
+        if (Item != null && Item.Asset.Name == "HempRope") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 typed: 1,
             }, {
@@ -4869,10 +5550,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-
         Target = "ItemNipples";
         Item = InventoryGet(Player, Target);
-        if (Item!=null && Item.Asset.Name == "TapedVibeEggs") {
+        if (Item != null && Item.Asset.Name == "TapedVibeEggs") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4882,7 +5562,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
         Target = "ItemVulva";
         Item = InventoryGet(Player, Target);
-        if (Item!=null && Item.Asset.Name == "WiredEgg") {
+        if (Item != null && Item.Asset.Name == "WiredEgg") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4890,59 +5570,55 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-
         Target = "ItemDevices";
         Item = InventoryGet(Player, Target);
-        if (Item.Asset.Name == "WoodenBox") {
+        if (Item != null && Item.Asset.Name == "WoodenBox") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 opacity: 0.66,
             }, {
                 push: true,
                 refresh: true,
             });
-        }
-                
-        ExclusivePadlock()
+        }            
+        ExclusivePadlock();
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
     } 
 
-    function TheDisplayFrameTrap(){
+    function XCrossTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
-        InventoryWear(Player, "PantyStuffing", "ItemMouth");        
-        InventoryWear(Player, "HarnessBallGag1", "ItemMouth2");
-        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "LewdBlindfold", "ItemHead");
+        InventoryWear(Player, "LeatherDeluxeCuffs", "ItemArms");
+        InventoryWear(Player, "LeatherDeluxeAnkleCuffs", "ItemFeet");
+        InventoryWear(Player, "X-Cross", "ItemDevices");
+        InventoryWear(Player, "PaddedLeatherMittens", "ItemHands");
+        if ((InventoryGet(Player, "ItemBreast") == null) ||
+            (InventoryGet(Player, "ItemBreast").Property == null) ||
+            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null) ||
+            (MagictoysOn == true)) {
+            if ((InventoryGet(Player, "ItemNipples") == null) ||
+                (InventoryGet(Player, "ItemNipples").Property == null) ||
+                (InventoryGet(Player, "ItemNipples").Property.LockedBy == null)) {
+                InventoryWear(Player, "ChainClamp", "ItemNipples");
+            }
+        }
         if ((InventoryGet(Player, "ItemPelvis") == null) ||
             (InventoryGet(Player, "ItemPelvis").Property == null) ||
             (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
             (MagictoysOn == true)) {
-           
             if ((InventoryGet(Player, "ItemVulva") == null) ||
                 (InventoryGet(Player, "ItemVulva").Property == null) ||
                 (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
-                InventoryWear(Player, "WiredEgg", "ItemVulva");
+                InventoryWear(Player, "HempRopeBelt", "ItemVulva");
             }
         }
-        InventoryWear(Player, "DuctTape", "ItemHands");
-        InventoryWear(Player, "TheDisplayFrame", "ItemDevices");
-        
-        Target = "ItemMouth2";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null && Item.Asset.Name == "HarnessBallGag1") {
-            ExtendedItemSetOptionByRecord(Player, Item, {
-                typed: 1,
-            }, {
-                push: true,
-                refresh: true,
-            });
-        }
-
+        InventoryWear(Player, "HarnessBallGag1", "ItemMouth");
+        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
+        InventoryWear(Player, "PaddedBlindfold", "ItemHead");
         Target = "ItemVulva";
         Item = InventoryGet(Player, Target);
-        if (Item!=null && Item.Asset.Name == "WiredEgg") {
+        if (Item != null && Item.Asset.Name == "HempRopeBelt") {
             ExtendedItemSetOptionByRecord(Player, Item, {
                 vibrating: 9,
             }, {
@@ -4950,112 +5626,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 refresh: true,
             });
         }
-
-        
-                
-        ExclusivePadlock()
+        ExclusivePadlock();
         CharacterRefresh(Player);
         ChatRoomCharacterUpdate(Player);
-    }
-    function TrolleyTrap(){
-        let Target = "";
-        let Item = "";
-        CharacterNaked(Player);     
-        InventoryWear(Player, "QualityHarnessGag", "ItemMouth3");
-        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "LeatherBlindfold", "ItemHead");        
-        InventoryWear(Player, "LeatherToeCuffs", "ItemBoots");
-        if ((InventoryGet(Player, "ItemPelvis") == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {
-           
-            if ((InventoryGet(Player, "ItemVulva") == null) ||
-                (InventoryGet(Player, "ItemVulva").Property == null) ||
-                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
-                InventoryWear(Player, "PenisDildo", "ItemVulva");
-            }
-            if ((InventoryGet(Player, "ItemButt") == null) ||
-                (InventoryGet(Player, "ItemButt").Property == null) ||
-                (InventoryGet(Player, "ItemButt").Property.LockedBy == null)) {
-                InventoryWear(Player, "EggVibePlugXXL", "ItemButt");
-            }
-        }
-        if ((InventoryGet(Player, "ItemPelvis") == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)){
-                InventoryWear(Player, "PolishedChastityBelt", "ItemPelvis");
-            }
-        InventoryWear(Player, "DuctTape", "ItemHands");
-        InventoryWear(Player, "ShinyLegBinder", "ItemLegs");
-        InventoryWear(Player, "ShinyStraitjacket", "ItemArms");
-        InventoryWear(Player, "Trolley", "ItemDevices");
-        
-        
-        Target = "ItemMouth3";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null && Item.Asset.Name == "QualityHarnessGag") {
-            ExtendedItemSetOptionByRecord(Player, Item, {
-                typed: 1,
-            }, {
-                push: true,
-                refresh: true,
-            });
-        }
-
-        Target = "ItemArms";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null && Item.Asset.Name == "ShinyStraitjacket") {
-            ExtendedItemSetOptionByRecord(Player, Item, {
-                typed: 1,
-            }, {
-                push: true,
-                refresh: true,
-            });
-        }
-
-        Target = "ItemButt";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null && Item.Asset.Name == "EggVibePlugXXL") {
-            ExtendedItemSetOptionByRecord(Player, Item, {
-                vibrating: 9,
-            }, {
-                push: true,
-                refresh: true,
-            });
-        }
-        Target = "ItemDevices";
-        Item = InventoryGet(Player, Target);
-        if (Item!=null && Item.Asset.Name == "Trolley") {
-            ExtendedItemSetOptionByRecord(Player, Item, {
-                typed: 1,
-            }, {
-                push: true,
-                refresh: true,
-            });
-        }
-
-        
-                
-        ExclusivePadlock()
-        CharacterRefresh(Player);
-        ChatRoomCharacterUpdate(Player);
-    }
-    //not yet implemented
-    function CoffinTrap(){}
-
-
-    //ExclusivePadlock
-    function ExclusivePadlock(){
-        setTimeout(function() {
-            for (let A = 0; A < Player.Appearance.length; A++)
-                if (Player.Appearance[A].Asset.AllowLock == true) {
-                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) ||
-                        (Player.Appearance[A].Property == null)) {
-                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
-                    }
-                }
-        }, 2000);
     }
 
     //Vision
@@ -5067,6 +5640,25 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         if (effect == 3) BlurLevel = 20;
         if (effect == 4) BlurLevel = 50;
         MainCanvas.filter = `blur(${BlurLevel}px)`;
+    }
+
+    function DrawHexToTints(color) {
+        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	color = color.replace(shorthandRegex, function (m, r, g, b) {
+	    return r + r + g + g + b + b;
+        });
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+	return result ? {
+	    r: parseInt(result[1], 16),
+	    g: parseInt(result[2], 16),
+	    b: parseInt(result[3], 16),
+            a: tintlevel
+	} : {
+	    r: 0,
+	    g: 0,
+	    b: 0,
+            a: 0
+        };
     }
 
     function GetBlindLevel0() {
@@ -5112,6 +5704,20 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     function GetBlurLevel4() {
         let blurLevel = 50;
         return blurLevel;
+    }
+
+    function TintsEffect() {   
+        let a1 = "";
+        let tints = DrawHexToTints(tintcolor);
+        let r = tints.r;
+        let g = tints.g;
+        let b = tints.b;
+        let a = tints.a;
+        if (a == 0) a1 = 0;
+        if (a == 1) a1 = 0.2;
+        if (a == 2) a1 = 0.35;
+        if (a == 3) a1 = 0.5;   
+        DrawRect(0, 0, 2000, 1000, `rgba(${r},${g},${b},${a1})`);
     }
 
     //WCE Status 
@@ -7926,29 +8532,34 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "asylum") {
-                setTimeout(function() {
-                    ChatRoomSpace = "Asylum";
-                    CommonSetScreen("Online", "ChatSearch");
-                    ChatRoomSetLastChatRoom("");
-                    document.getElementById("InputChat").style.display = "none";
-                    document.getElementById("TextAreaChatLog").style.display = "none";
-                    ElementRemove("InputSearch");
-                    ChatRoomHideElements();
-                    FriendListReturn = {
-                        Screen: CurrentScreen,
-                        Module: CurrentModule
-                    };
-                    CommonSetScreen("Character", "FriendList");
-                }, 3000);
-                setTimeout(function() {
-                    FriendListExit();
-                    CommonSetScreen("Online", "ChatRoom");
-                    document.getElementById("InputChat").style.display = "inline";
-                    document.getElementById("TextAreaChatLog").style.display = "inline";
-                }, 15000);
+                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) { 
+                    setTimeout(function() {
+                        ChatRoomSpace = "Asylum";
+                        CommonSetScreen("Online", "ChatSearch");
+                        ChatRoomSetLastChatRoom("");
+                        document.getElementById("InputChat").style.display = "none";
+                        document.getElementById("TextAreaChatLog").style.display = "none";
+                        ElementRemove("InputSearch");
+                        ChatRoomHideElements();
+                        FriendListReturn = {
+                            Screen: CurrentScreen,
+                            Module: CurrentModule
+                        };
+                        CommonSetScreen("Character", "FriendList");
+                    }, 3000);
+                    setTimeout(function() {
+                        FriendListExit();
+                        CommonSetScreen("Online", "ChatRoom");
+                        document.getElementById("InputChat").style.display = "inline";
+                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                    }, 15000);
+                } else {
+                    let msg = "No access to this lobby.";
+                    infomsg(msg);
+                }
             }
             if (args === "fclub") {
-                if (IsFemale() == true) {
+                if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false)))  {
                     setTimeout(function() {
                         ChatRoomSpace = "";
                         CommonSetScreen("Online", "ChatSearch");
@@ -7970,12 +8581,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    let msg = "Only females have access to this lobby.";
+                    let msg = "No access to this lobby.";
                     infomsg(msg);
                 }
             }
             if (args === "mclub") {
-                if (IsMale() == true) {
+                if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false)))  {
                     setTimeout(function() {
                         ChatRoomSpace = "M";
                         CommonSetScreen("Online", "ChatSearch");
@@ -7997,31 +8608,36 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    let msg = "Only males have access to this lobby.";
+                    let msg = "No access to this lobby.";
                     infomsg(msg);
                 }
             }
             if (args === "xclub") {
-                setTimeout(function() {
-                    ChatRoomSpace = "X";
-                    CommonSetScreen("Online", "ChatSearch");
-                    ChatRoomSetLastChatRoom("");
-                    document.getElementById("InputChat").style.display = "none";
-                    document.getElementById("TextAreaChatLog").style.display = "none";
-                    ElementRemove("InputSearch");
-                    ChatRoomHideElements();
-                    FriendListReturn = {
-                        Screen: CurrentScreen,
-                        Module: CurrentModule
-                    };
-                    CommonSetScreen("Character", "FriendList");
-                }, 3000);
-                setTimeout(function() {
-                    FriendListExit();
-                    CommonSetScreen("Online", "ChatRoom");
-                    document.getElementById("InputChat").style.display = "inline";
-                    document.getElementById("TextAreaChatLog").style.display = "inline";
-                }, 15000);
+                if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
+                    setTimeout(function() {
+                        ChatRoomSpace = "X";
+                        CommonSetScreen("Online", "ChatSearch");
+                        ChatRoomSetLastChatRoom("");
+                        document.getElementById("InputChat").style.display = "none";
+                        document.getElementById("TextAreaChatLog").style.display = "none";
+                        ElementRemove("InputSearch");
+                        ChatRoomHideElements();
+                        FriendListReturn = {
+                            Screen: CurrentScreen,
+                            Module: CurrentModule
+                        };
+                        CommonSetScreen("Character", "FriendList");
+                    }, 3000);
+                    setTimeout(function() {
+                        FriendListExit();
+                        CommonSetScreen("Online", "ChatRoom");
+                        document.getElementById("InputChat").style.display = "inline";
+                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                    }, 15000);
+                } else {
+                    let msg = "No access to this lobby.";
+                    infomsg(msg);
+                }
             }
         }
     }])
@@ -9881,24 +10497,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
     CommandCombine([{
-        Tag: 'maptrap',
-        Description: ": toggles traps with devices in map rooms.",
-        Action: () => {
-            if (MaptrapOn == true) {
-                MaptrapOn = false;
-                M_MOANER_saveControls();
-                let msg = "No traps with devices in map rooms";
-                infomsg(msg);
-            } else {
-                MaptrapOn = true;
-                M_MOANER_saveControls();
-                let msg = "Traps in map rooms if you 'walk' on devices";
-                infomsg(msg);
-            }
-        }
-    }])
-
-    CommandCombine([{
         Tag: 'mapx',
         Description: "(x-position): changes your X coordinate in the map.",
         Action: (args) => {
@@ -10611,7 +11209,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 ServerSend("ChatRoomLeave", "");
                 ChatRoomSetLastChatRoom("");
                 OnlineGameName = "";
-                ChatRoomhideElements();
+                ChatRoomClearAllElements();
                 CommonSetScreen("Room", "Infiltration");
             }
         }
@@ -12116,28 +12714,33 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 infomsg(msg);
             }
             if (args === "asylum") {
-                setTimeout(function() {
-                    ChatRoomSpace = "Asylum";
-                    ChatSearchLeaveRoom = "AsylumEntrance";
-                    ChatSearchBackground = "AsylumEntrance";
-                    ChatCreateBackgroundList = BackgroundsTagAsylum;
-                    CommonSetScreen("Online", "ChatSearch");
-                    ChatSelectStartSearch("Asylum");
-                    ChatRoomSetLastChatRoom("");
-                    document.getElementById("InputChat").style.display = "none";
-                    document.getElementById("TextAreaChatLog").style.display = "none";
-                    ChatRoomHideElements();
-                    ChatSelectStartSearch("Asylum");
-                    ChatRoomSetLastChatRoom("");
-                }, 3000);
-                setTimeout(function() {
-                    CommonSetScreen("Online", "ChatRoom");
-                    document.getElementById("InputChat").style.display = "inline";
-                    document.getElementById("TextAreaChatLog").style.display = "inline";
-                }, 15000);
+                if ((AsylumLimitOn == false) || (ChatRoomSpace == "Asylum")) {
+                    setTimeout(function() {
+                        ChatRoomSpace = "Asylum";
+                        ChatSearchLeaveRoom = "AsylumEntrance";
+                        ChatSearchBackground = "AsylumEntrance";
+                        ChatCreateBackgroundList = BackgroundsTagAsylum;
+                        CommonSetScreen("Online", "ChatSearch");
+                        ChatSelectStartSearch("Asylum");
+                        ChatRoomSetLastChatRoom("");
+                        document.getElementById("InputChat").style.display = "none";
+                        document.getElementById("TextAreaChatLog").style.display = "none";
+                        ChatRoomHideElements();
+                        ChatSelectStartSearch("Asylum");
+                        ChatRoomSetLastChatRoom("");
+                    }, 3000);
+                    setTimeout(function() {
+                        CommonSetScreen("Online", "ChatRoom");
+                        document.getElementById("InputChat").style.display = "inline";
+                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                    }, 15000);
+                } else {
+                    let msg = "No access to this lobby.";
+                    infomsg(msg);
+                }
             }
             if (args === "fclub") {
-                if (IsFemale() == true) {
+                if ((IsFemale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                     setTimeout(function() {
                         ChatSelectStartSearch("");
                         ChatRoomSetLastChatRoom("");
@@ -12153,12 +12756,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    let msg = "Only females have access to this lobby.";
+                    let msg = "No access to this lobby.";
                     infomsg(msg);
                 }
             }
             if (args === "mclub") {
-                if (IsMale() == true) {
+                if ((IsMale() == true) && ((ChatRoomSpace != "Asylum") || (AsylumLimitOn == false))) {
                     setTimeout(function() {
                         ChatSelectStartSearch("M");
                         ChatRoomSetLastChatRoom("");
@@ -12174,25 +12777,30 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         document.getElementById("TextAreaChatLog").style.display = "inline";
                     }, 15000);
                 } else {
-                    let msg = "Only males have access to this lobby.";
+                    let msg = "No access to this lobby.";
                     infomsg(msg);
                 }
             }
             if (args === "xclub") {
-                setTimeout(function() {
-                    ChatSelectStartSearch("X");
-                    ChatRoomSetLastChatRoom("");
-                    document.getElementById("InputChat").style.display = "none";
-                    document.getElementById("TextAreaChatLog").style.display = "none";
-                    ChatRoomHideElements();
-                    ChatSelectStartSearch("X");
-                    ChatRoomSetLastChatRoom("");
-                }, 3000);
-                setTimeout(function() {
-                    CommonSetScreen("Online", "ChatRoom");
-                    document.getElementById("InputChat").style.display = "inline";
-                    document.getElementById("TextAreaChatLog").style.display = "inline";
-                }, 15000);
+                if ((AsylumLimitOn == false) || ((AsylumLimitOn == true) && (ChatRoomSpace != "Asylum"))) {
+                    setTimeout(function() {
+                        ChatSelectStartSearch("X");
+                        ChatRoomSetLastChatRoom("");
+                        document.getElementById("InputChat").style.display = "none";
+                        document.getElementById("TextAreaChatLog").style.display = "none";
+                        ChatRoomHideElements();
+                        ChatSelectStartSearch("X");
+                        ChatRoomSetLastChatRoom("");
+                    }, 3000);
+                    setTimeout(function() {
+                        CommonSetScreen("Online", "ChatRoom");
+                        document.getElementById("InputChat").style.display = "inline";
+                        document.getElementById("TextAreaChatLog").style.display = "inline";
+                    }, 15000);
+                } else {
+                    let msg = "No access to this lobby.";
+                    infomsg(msg);
+                }
             }
         }
     }])
@@ -13228,7 +13836,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "<b>/mapfull</b> = toggles full vision and hearing in map rooms.\n" +
                     "<b>/mapkeys</b> = gives all keys for current map room.\n" +
                     "<b>/maproom</b> = gives infos about players in current map.\n" +
-                    "<b>/maptrap</b> = toggles traps with devices in map rooms.\n" +
                     "<b>/mapx</b> (x-position) = changes your X coordinate in the map.\n" +
                     "<b>/mapy</b> (y-position) = changes your Y coordinate in the map.\n" +
                     "<b>/mapz</b> (target) = gives coordinates in the map.\n" +
@@ -13855,8 +14462,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Action: (args) => {
             if (args === "") {
                 let msg = "The uset command must be followed by an toggle option corresponding to an UBC setting:\n" +
-                    "<b>autojoin</b> for chat room auto-join feature\n" +
-                    "<b>magictoys</b> for toys under locked chastity in traps";
+                    "<b>autojoin</b> for chat room auto-join feature";
                 infomsg(msg);
             } else {
                 let setting = args;
@@ -13870,18 +14476,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                         AutojoinOn = true;
                         M_MOANER_saveControls();
                         let msg = "Auto-Join feature is enabled.";
-                        infomsg(msg);
-                    }
-                } else if (setting == "magictoys") {
-                    if (MagictoysOn == true) {
-                        MagictoysOn = false;
-                        M_MOANER_saveControls();
-                        let msg = "Toys can't be added under locked chastity for trap mode in map rooms.";
-                        infomsg(msg);
-                    } else {
-                        MagictoysOn = true;
-                        M_MOANER_saveControls();
-                        let msg = "Toys can be added under locked chastity for trap mode in map rooms.";
                         infomsg(msg);
                     }
                 }
