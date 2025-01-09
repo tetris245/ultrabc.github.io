@@ -2218,6 +2218,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let msg = "" + tmpname + " is suddenly trapped on a Bondage Bench.";
                     publicmsg(msg);
                 }
+                if ((item2 == "Coffin") && ((maptrap1 == 2) || (maptrap1 == 9))) {
+                    CoffinTrap();
+                    let msg = "" + tmpname + " is suddenly trapped in a Coffin";
+                    publicmsg(msg);
+                }
                 if ((item2 == "TheDisplayFrame") && ((maptrap1 == 3) || (maptrap1 == 9))) {
                     DisplayFrameTrap();
                     let msg = "" + tmpname + " is suddenly trapped in a Display Frame.";
@@ -5202,25 +5207,39 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     //Traps
+    function WearItemIfUnlocked(p, item, slot){
+        if (IsItemSlotUnlocked(p, slot))
+            InventoryWear(p, item, slot);
+    }
+    function IsItemSlotUnlocked(p, slot){ 
+        return ((InventoryGet(p, slot) == null) ||
+        (InventoryGet(p, slot).Property == null) ||
+        (InventoryGet(p, slot).Property.LockedBy == null));
+    }
+    function ExclusivePadlock() {
+        setTimeout(function() {
+            for (let A = 0; A < Player.Appearance.length; A++)
+                if (Player.Appearance[A].Asset.AllowLock == true) {
+                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
+                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
+                    }
+                }
+        }, 2000);
+    }
+
+
     function BondageBenchTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
-        InventoryWear(Player, "BondageBench", "ItemDevices");
-        if ((InventoryGet(Player, "ItemPelvis") == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {
-            if ((InventoryGet(Player, "ItemVulva") == null) ||
-                (InventoryGet(Player, "ItemVulva").Property == null) ||
-                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
-                InventoryWear(Player, "VibratingLatexPanties", "ItemVulva");
-            }
+        WearItemIfUnlocked(Player, "BondageBench", "ItemDevices");
+        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)) {           
+            WearItemIfUnlocked(Player, "VibratingLatexPanties", "ItemVulva");
         }
-        InventoryWear(Player, "SleepSac", "ItemArms");
-        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "FullBlindfold", "ItemHead");
-        InventoryWear(Player, "DeepthroatGag", "ItemMouth");
+        WearItemIfUnlocked(Player, "SleepSac", "ItemArms");
+        WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
+        WearItemIfUnlocked(Player, "FullBlindfold", "ItemHead");
+        WearItemIfUnlocked(Player, "DeepthroatGag", "ItemMouth");
         Target = "ItemDevices";
         Item = InventoryGet(Player, Target);
         if (Item != null && Item.Asset.Name == "BondageBench") {
@@ -5246,26 +5265,85 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
+    function CoffinTrap(){
+        let Target = "";
+        let Item = "";
+        CharacterNaked(Player);
+        WearItemIfUnlocked(Player, "LatexPostureCollar", "ItemMouth2");
+        WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
+        WearItemIfUnlocked(Player, "StuddedBlindfold", "ItemHead");   
+        WearItemIfUnlocked(Player, "BalletWedges", "ItemBoots");
+        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)) {                   
+            WearItemIfUnlocked(Player, "PenisDildo", "ItemVulva");      
+            WearItemIfUnlocked(Player, "EggVibePlugXXL", "ItemButt");            
+        }                
+        WearItemIfUnlocked(Player, "ShinyLegBinder", "ItemLegs");
+        WearItemIfUnlocked(Player, "ShinyStraitjacket", "ItemArms");
+        WearItemIfUnlocked(Player, "Coffin", "ItemDevices");
+        
+        Target = "ItemArms";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "ShinyStraitjacket") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 2,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemLegs";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "ShinyLegBinder") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 3,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        Target = "ItemButt";
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "EggVibePlugXXL") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                vibrating: 9,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }
+        //Closing coffin, idk if neeeded (Maybe close it after some time?)
+
+        /*Target = "ItemDevices"; 
+        Item = InventoryGet(Player, Target);
+        if (Item != null && Item.Asset.Name == "Coffin") {
+            ExtendedItemSetOptionByRecord(Player, Item, {
+                typed: 1,
+            }, {
+                push: true,
+                refresh: true,
+            });
+        }*/
+        ExclusivePadlock();
+        CharacterRefresh(Player);
+        ChatRoomCharacterUpdate(Player);
+    }
+
+
+
+
     function DisplayFrameTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
-        InventoryWear(Player, "PantyStuffing", "ItemMouth");        
-        InventoryWear(Player, "HarnessBallGag1", "ItemMouth2");
-        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "LewdBlindfold", "ItemHead");
-        if ((InventoryGet(Player, "ItemPelvis") == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {        
-            if ((InventoryGet(Player, "ItemVulva") == null) ||
-                (InventoryGet(Player, "ItemVulva").Property == null) ||
-                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
-                InventoryWear(Player, "WiredEgg", "ItemVulva");
-            }
+        WearItemIfUnlocked(Player, "PantyStuffing", "ItemMouth");        
+        WearItemIfUnlocked(Player, "HarnessBallGag1", "ItemMouth2");
+        WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
+        WearItemIfUnlocked(Player, "LewdBlindfold", "ItemHead");
+        if (IsItemSlotUnlocked(p, "ItemPelvis") || (MagictoysOn == true)) {  
+            WearItemIfUnlocked(Player, "WiredEgg", "ItemVulva");            
         }
-        InventoryWear(Player, "DuctTape", "ItemHands");
-        InventoryWear(Player, "TheDisplayFrame", "ItemDevices");      
+        WearItemIfUnlocked(Player, "DuctTape", "ItemHands");
+        WearItemIfUnlocked(Player, "TheDisplayFrame", "ItemDevices");      
         Target = "ItemMouth2";
         Item = InventoryGet(Player, Target);
         if (Item != null && Item.Asset.Name == "HarnessBallGag1") {
@@ -5291,47 +5369,24 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         ChatRoomCharacterUpdate(Player);
     }
 
-    function ExclusivePadlock() {
-        setTimeout(function() {
-            for (let A = 0; A < Player.Appearance.length; A++)
-                if (Player.Appearance[A].Asset.AllowLock == true) {
-                    if (((Player.Appearance[A].Property != null) && (Player.Appearance[A].Property.LockedBy == null)) || (Player.Appearance[A].Property == null)) {
-                        InventoryLock(Player, Player.Appearance[A], "ExclusivePadlock", Player.MemberNumber, Update = true);
-                    }
-                }
-        }, 2000);
-    }
+
 
     function KennelTrap() {
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
-        InventoryWear(Player, "ShinyPetSuit", "ItemArms");
-        if ((InventoryGet(Player, "ItemBreast") == null) ||
-            (InventoryGet(Player, "ItemBreast").Property == null) ||
-            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {
-            if ((InventoryGet(Player, "ItemNipples") == null) ||
-                (InventoryGet(Player, "ItemNipples").Property == null) ||
-                (InventoryGet(Player, "ItemNipples").Property.LockedBy == null)) {
-                InventoryWear(Player, "VibeNippleClamp", "ItemNipples");
-            }
+        WearItemIfUnlocked(Player, "ShinyPetSuit", "ItemArms");
+        if (IsItemSlotUnlocked(Player, "ItemBreast") || (MagictoysOn == true)) {            
+            WearItemIfUnlocked(Player, "VibeNippleClamp", "ItemNipples");            
         }
-        InventoryWear(Player, "LeatherHarness", "ItemTorso");
-        if ((InventoryGet(Player, "ItemPelvis") == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {
-            if ((InventoryGet(Player, "ItemVulva") == null) ||
-                (InventoryGet(Player, "ItemVulva").Property == null) ||
-                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
-                InventoryWear(Player, "ClitoralStimulator", "ItemVulva");
-            }
+        WearItemIfUnlocked(Player, "LeatherHarness", "ItemTorso");
+        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)) {            
+            WearItemIfUnlocked(Player, "ClitoralStimulator", "ItemVulva");            
         }
-        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "DildoPlugGag", "ItemMouth");
-        InventoryWear(Player, "LeatherSlimMaskOpenMouth", "ItemHead");
-        InventoryWear(Player, "Kennel", "ItemDevices");
+        WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
+        WearItemIfUnlocked(Player, "DildoPlugGag", "ItemMouth");
+        WearItemIfUnlocked(Player, "LeatherSlimMaskOpenMouth", "ItemHead");
+        WearItemIfUnlocked(Player, "Kennel", "ItemDevices");
         Target = "ItemNipples";
         Item = InventoryGet(Player, Target);
         if (Item != null && Item.Asset.Name == "VibeNippleClamp") {
@@ -5382,27 +5437,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
-        InventoryWear(Player, "SockStuffing", "ItemMouth");
-        InventoryWear(Player, "PantiesMask", "ItemMouth2");
-        InventoryWear(Player, "ShoeGag", "ItemMouth3");
-        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "Pantyhose", "ItemHead");
-        if ((InventoryGet(Player, "ItemBreast") == null) ||
-            (InventoryGet(Player, "ItemBreast").Property == null) ||
-            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null)) {
-            InventoryWear(Player, "TickleBra", "ItemBreast");
-        }
-        InventoryWear(Player, "ToeTie", "ItemBoots");
-        InventoryWear(Player, "HempRope", "ItemFeet");
-        InventoryWear(Player, "HempRope", "ItemLegs");
-        if ((InventoryGet(Player, "ItemPelvis") == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)) {
-            InventoryWear(Player, "HempRope", "ItemPelvis");
-        }
-        InventoryWear(Player, "DuctTape", "ItemHands");
-        InventoryWear(Player, "PantyhoseBodyOpen", "ItemArms");
-        InventoryWear(Player, "Locker", "ItemDevices");
+        WearItemIfUnlocked(Player, "SockStuffing", "ItemMouth");
+        WearItemIfUnlocked(Player, "PantiesMask", "ItemMouth2");
+        WearItemIfUnlocked(Player, "ShoeGag", "ItemMouth3");
+        WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
+        WearItemIfUnlocked(Player, "Pantyhose", "ItemHead");        
+        WearItemIfUnlocked(Player, "TickleBra", "ItemBreast");       
+        WearItemIfUnlocked(Player, "ToeTie", "ItemBoots");
+        WearItemIfUnlocked(Player, "HempRope", "ItemFeet");
+        WearItemIfUnlocked(Player, "HempRope", "ItemLegs");        
+        WearItemIfUnlocked(Player, "HempRope", "ItemPelvis");        
+        WearItemIfUnlocked(Player, "DuctTape", "ItemHands");
+        WearItemIfUnlocked(Player, "PantyhoseBodyOpen", "ItemArms");
+        WearItemIfUnlocked(Player, "Locker", "ItemDevices");
         Target = "ItemBreast";
         Item = InventoryGet(Player, Target);
         if (Item != null && Item.Asset.Name == "TickleBra") {
@@ -5433,34 +5480,21 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let Target = "";
         let Item = "";
         CharacterNaked(Player);     
-        InventoryWear(Player, "QualityHarnessGag", "ItemMouth3");
-        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "LeatherBlindfold", "ItemHead");   
-        InventoryWear(Player, "LeatherToeCuffs", "ItemBoots");
-        if ((InventoryGet(Player, "ItemPelvis") == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {       
-            if ((InventoryGet(Player, "ItemVulva") == null) ||
-                (InventoryGet(Player, "ItemVulva").Property == null) ||
-                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
-                InventoryWear(Player, "PenisDildo", "ItemVulva");
-            }
-            if ((InventoryGet(Player, "ItemButt") == null) ||
-                (InventoryGet(Player, "ItemButt").Property == null) ||
-                (InventoryGet(Player, "ItemButt").Property.LockedBy == null)) {
-                InventoryWear(Player, "EggVibePlugXXL", "ItemButt");
-            }
-        }
-        if ((InventoryGet(Player, "ItemPelvis") == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)){
-            InventoryWear(Player, "PolishedChastityBelt", "ItemPelvis");
-        }
-        InventoryWear(Player, "DuctTape", "ItemHands");
-        InventoryWear(Player, "ShinyLegBinder", "ItemLegs");
-        InventoryWear(Player, "ShinyStraitjacket", "ItemArms");
-        InventoryWear(Player, "Trolley", "ItemDevices");
+        WearItemIfUnlocked(Player, "QualityHarnessGag", "ItemMouth3");
+        WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
+        WearItemIfUnlocked(Player, "LeatherBlindfold", "ItemHead");   
+        WearItemIfUnlocked(Player, "LeatherToeCuffs", "ItemBoots");
+        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)) {       
+            
+            WearItemIfUnlocked(Player, "PenisDildo", "ItemVulva");      
+            WearItemIfUnlocked(Player, "EggVibePlugXXL", "ItemButt");
+            
+        }        
+        WearItemIfUnlocked(Player, "PolishedChastityBelt", "ItemPelvis");        
+        WearItemIfUnlocked(Player, "DuctTape", "ItemHands");
+        WearItemIfUnlocked(Player, "ShinyLegBinder", "ItemLegs");
+        WearItemIfUnlocked(Player, "ShinyStraitjacket", "ItemArms");
+        WearItemIfUnlocked(Player, "Trolley", "ItemDevices");
         Target = "ItemMouth3";
         Item = InventoryGet(Player, Target);
         if (Item != null && Item.Asset.Name == "QualityHarnessGag") {
@@ -5510,36 +5544,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
-        InventoryWear(Player, "PantyStuffing", "ItemMouth");        
-        InventoryWear(Player, "ClothGag", "ItemMouth2");
-        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "ClothBlindfold", "ItemHead");
-        if ((InventoryGet(Player, "ItemBreast") == null) ||
-            (InventoryGet(Player, "ItemBreast").Property == null) ||
-            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {
-            if ((InventoryGet(Player, "ItemNipples") == null) ||
-                (InventoryGet(Player, "ItemNipples").Property == null) ||
-                (InventoryGet(Player, "ItemNipples").Property.LockedBy == null)) {
-                InventoryWear(Player, "TapedVibeEggs", "ItemNipples");
-            }
+        WearItemIfUnlocked(Player, "PantyStuffing", "ItemMouth");        
+        WearItemIfUnlocked(Player, "ClothGag", "ItemMouth2");
+        WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
+        WearItemIfUnlocked(Player, "ClothBlindfold", "ItemHead");
+        if (IsItemSlotUnlocked(Player, "ItemBreast") || (MagictoysOn == true)) {            
+            WearItemIfUnlocked(Player, "TapedVibeEggs", "ItemNipples");
         }
-        InventoryWear(Player, "ToeTie", "ItemBoots");
-        InventoryWear(Player, "HempRope", "ItemFeet");
-        InventoryWear(Player, "HempRope", "ItemLegs");
-        if ((InventoryGet(Player, "ItemPelvis") == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null)) {
-            InventoryWear(Player, "HempRope", "ItemPelvis");
-            if ((InventoryGet(Player, "ItemVulva") == null) ||
-                (InventoryGet(Player, "ItemVulva").Property == null) ||
-                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
-                InventoryWear(Player, "WiredEgg", "ItemVulva");
-            }
+        WearItemIfUnlocked(Player, "ToeTie", "ItemBoots");
+        WearItemIfUnlocked(Player, "HempRope", "ItemFeet");
+        WearItemIfUnlocked(Player, "HempRope", "ItemLegs");        
+        WearItemIfUnlocked(Player, "HempRope", "ItemPelvis");
+        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)){
+            WearItemIfUnlocked(Player, "WiredEgg", "ItemVulva");            
         }
-        InventoryWear(Player, "DuctTape", "ItemHands");
-        InventoryWear(Player, "HempRope", "ItemArms");
-        InventoryWear(Player, "WoodenBox", "ItemDevices"); 
+        WearItemIfUnlocked(Player, "DuctTape", "ItemHands");
+        WearItemIfUnlocked(Player, "HempRope", "ItemArms");
+        WearItemIfUnlocked(Player, "WoodenBox", "ItemDevices"); 
         Target = "ItemArms";
         Item = InventoryGet(Player, Target);
         if (Item != null && Item.Asset.Name == "HempRope") {
@@ -5589,33 +5610,19 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         let Target = "";
         let Item = "";
         CharacterNaked(Player);
-        InventoryWear(Player, "LeatherDeluxeCuffs", "ItemArms");
-        InventoryWear(Player, "LeatherDeluxeAnkleCuffs", "ItemFeet");
-        InventoryWear(Player, "X-Cross", "ItemDevices");
-        InventoryWear(Player, "PaddedLeatherMittens", "ItemHands");
-        if ((InventoryGet(Player, "ItemBreast") == null) ||
-            (InventoryGet(Player, "ItemBreast").Property == null) ||
-            (InventoryGet(Player, "ItemBreast").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {
-            if ((InventoryGet(Player, "ItemNipples") == null) ||
-                (InventoryGet(Player, "ItemNipples").Property == null) ||
-                (InventoryGet(Player, "ItemNipples").Property.LockedBy == null)) {
-                InventoryWear(Player, "ChainClamp", "ItemNipples");
-            }
+        WearItemIfUnlocked(Player, "LeatherDeluxeCuffs", "ItemArms");
+        WearItemIfUnlocked(Player, "LeatherDeluxeAnkleCuffs", "ItemFeet");
+        WearItemIfUnlocked(Player, "X-Cross", "ItemDevices");
+        WearItemIfUnlocked(Player, "PaddedLeatherMittens", "ItemHands");
+        if (IsItemSlotUnlocked(Player, "ItemBreast") || (MagictoysOn == true)) {            
+            WearItemIfUnlocked(Player, "ChainClamp", "ItemNipples");            
         }
-        if ((InventoryGet(Player, "ItemPelvis") == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property == null) ||
-            (InventoryGet(Player, "ItemPelvis").Property.LockedBy == null) ||
-            (MagictoysOn == true)) {
-            if ((InventoryGet(Player, "ItemVulva") == null) ||
-                (InventoryGet(Player, "ItemVulva").Property == null) ||
-                (InventoryGet(Player, "ItemVulva").Property.LockedBy == null)) {
-                InventoryWear(Player, "HempRopeBelt", "ItemVulva");
-            }
+        if (IsItemSlotUnlocked(Player, "ItemPelvis") || (MagictoysOn == true)) {            
+            WearItemIfUnlocked(Player, "HempRopeBelt", "ItemVulva");            
         }
-        InventoryWear(Player, "HarnessBallGag1", "ItemMouth");
-        InventoryWear(Player, "HeavyDutyEarPlugs", "ItemEars");
-        InventoryWear(Player, "PaddedBlindfold", "ItemHead");
+        WearItemIfUnlocked(Player, "HarnessBallGag1", "ItemMouth");
+        WearItemIfUnlocked(Player, "HeavyDutyEarPlugs", "ItemEars");
+        WearItemIfUnlocked(Player, "PaddedBlindfold", "ItemHead");
         Target = "ItemVulva";
         Item = InventoryGet(Player, Target);
         if (Item != null && Item.Asset.Name == "HempRopeBelt") {
