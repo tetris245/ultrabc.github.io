@@ -5185,9 +5185,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             if (ChatRoomTargetMemberNumber == Player.Ownership.MemberNumber) {
                                 wh1 = 0;
                             } else {
-                                if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+                                if ((wh1data > 1) && (wh1data < 7)) {
+                                    if (bcxlist.includes(ChatRoomTargetMemberNumber)) wh1 = 0; 
+                                }
                             }
-                       }
+                        }
                     }
                  }
              }
@@ -5195,8 +5197,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
          if (wh1 == 0) return true;
          if (wh1 == 1) return false;
     }
-
-        
+  
     function IsDollTalk(text) {
         let nn = 0;
         let segmenter = new Intl.Segmenter([], {
