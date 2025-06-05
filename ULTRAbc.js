@@ -3336,7 +3336,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    } else if (MiniGameEnded) {
 		return true;
 	    }
-	    return false;Add commentMore actions
+	    return false;
             return;
         });
     }
