@@ -571,7 +571,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             rhide = false;
             tcname = "Cell";
             unrestrict = 0;
-            MessageDefault();
+            messageDefault();
             M_MOANER_saveControls();
         } else {
             UBCdata(data);
