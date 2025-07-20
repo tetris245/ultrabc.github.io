@@ -2191,6 +2191,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRADrawRoomBackground();
     ULTRAFriendListDraw();
     ULTRAFriendListKeyDown(); 
+    ULTRAIntroductionClubCardStart();
     ULTRALARPClubCardStart();
     ULTRALoginClick();
     ULTRALoginRun();
@@ -2270,7 +2271,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ULTRAPokerRun();
     ULTRAPrisonRun();
     ULTRAPuppyWalkerRun();
-    ULTRARhythmGameRun()
+    ULTRARhythmGameRun();
     ULTRASarahRun();
     ULTRAShibariRun();
     ULTRAShopRun();
