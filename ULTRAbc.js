@@ -8,6 +8,8 @@
 // @match https://www.bondageprojects.elementfx.com/*
 // @match https://bondage-europe.com/*
 // @match https://www.bondage-europe.com/*
+// @match https://bondage-asia.com/Club/*
+// @match https://www.bondage-asia.com/Club/*
 // @match https://bondageprojects.com/*
 // @match https://www.bondageprojects.com/*
 // @match http://localhost:*/*
@@ -14879,3 +14881,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
