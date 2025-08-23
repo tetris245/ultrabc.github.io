@@ -13133,7 +13133,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "escapedpatient, farmhorse, femboy, flyingpegasus, foal,\n" +
                     "foxy, goodboy, goodone, goodgirl, goodslave,\n" +
                     "goodslaveboy, goodslavegirl, headmaid, hotbloodhorse,\n" +
-                    "houdin, incubus, infiltrator, kidnapper, kitten.";
+                    "houdini, incubus, infiltrator, kidnapper, kitten.";
                 infomsg(msg);
             } else {
                 let title = args;
@@ -14699,4 +14699,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
