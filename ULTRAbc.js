@@ -8881,7 +8881,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Level: PreferenceDifficultyLevel
                 };
                 ServerSend("AccountDifficulty", PreferenceDifficultyLevel);
-                PreferenceInitPlayer();
                 LoginDifficulty(true);
             }
         }
@@ -13954,3 +13953,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
