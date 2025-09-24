@@ -3796,11 +3796,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             for (let i = 0; i < list.length; i++) {
                 if (list[i].Button == "MBS Settings") mbb = 1;
             }
+			let name = PreferenceSubscreen.name;
             if ((name == "Extensions") && (PreferenceExtensionsCurrent == null) && (mbb == 1) && (tintnever == false)) {
                 if ((tintmbs == true) && (tintlevel != 0)) tintMbsColors();
                 if (tintmbs == false) untintMbsColors();
             }
-            if (name != "Online") TintsEffect();
+            TintsEffect();
             next(args);
         });
     }
@@ -13908,7 +13909,3 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
-
-
-
-
