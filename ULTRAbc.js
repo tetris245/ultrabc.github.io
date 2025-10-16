@@ -11941,6 +11941,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     AsylumGGTSLock(0);
                     Level = parseInt(0);
                     Player.Game.GGTS.Level = 0;
+					if (AsylumGGTSComputer != null) AsylumGGTSComputer.FixedImage = "Screens/Room/AsylumGGTS/Computer.png";
                     ServerAccountUpdate.QueueData({
                         Game: Player.Game
                     });
@@ -14142,4 +14143,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
 
