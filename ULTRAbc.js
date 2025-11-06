@@ -3215,9 +3215,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         });
     }
 
-	async function ULTRAChatSearchUnload() {
+	function ULTRAChatSearchUnload() {
         modApi.hookFunction('ChatSearchUnload', 4, (args, next) => {
-            ElementRemove(ChatSearchRoomBottom); 
+            ElementRemove("chat-search-room-bottom"); 
             next(args);
         });
     }
@@ -3349,7 +3349,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (Player.Game.ClubCard.Reward.indexOf(Char) < 0) {
                     ClubCardFocus = ClubCardReward;
                     Player.Game.ClubCard.Reward = Player.Game.ClubCard.Reward + Char;
-                    ServerAccoutUpdate.QueueData({
+                    ServerAccountUpdate.QueueData({
                         Game: Player.Game
                     }, true);
                     nmg = TextGet("WonNewCard");
@@ -16896,4 +16896,5 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
