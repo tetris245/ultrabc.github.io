@@ -91,6 +91,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     window.UBCver = UBCver;
     let ini = 0;
     let kp = 0;
+	let ChatSearchRoomBottom = "chat-search-room-bottom"; 
 
     let tmpname;
     let pronoun1;
@@ -16900,6 +16901,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
