@@ -906,6 +906,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (csname == null || csname == undefined) csname = "Introduction";
                 if (dogsforbid == null || dogsforbid == undefined) dogsforbid = false;
 				if (dogsforced == null || dogsforced == undefined) dogsforced = false;
+				if (dogsforced == false) dogsforbid = false;
                 if (dolltalk == null || dolltalk == undefined) dolltalk = false;
                 if (extbuttons == null || extbuttons == undefined) extbuttons = false;
                 if (extrainfo == null || extrainfo == undefined) extrainfo = false;
@@ -1713,6 +1714,10 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     Player.RestrictionSettings.BypassNPCPunishments = false;
                 } else {
                     Player.RestrictionSettings.BypassNPCPunishments = true;
+                }
+				if (dogsforced == false) {
+                    dogsforbid = false;
+                    M_MOANER_saveControls();              
                 }
                 if ((noescape == true) && (unrestrict == 2)) {
                     Player.UBC.ubcSettings.utotal = false;
@@ -8216,8 +8221,12 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     ];
 
     function DOGSsettings() {
+		dogsforbid = false;
+        if (dogsforced == false) {
+           M_MOANER_saveControls();
+           return;
+        }
         if (dogsforced == true) {
-            dogsforbid = false;
             let DOGS = Player.ExtensionSettings.DOGS;
             if (DOGS) {
                 let DOGSdata = JSON.parse(LZString.decompressFromBase64(DOGS));
@@ -16441,6 +16450,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
 
 
 
