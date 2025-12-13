@@ -3784,7 +3784,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 minigame = "";
                 M_MOANER_saveControls();
                 IntroductionJobList = ["SubDojo"];
-                IntroductionJobStart("SubDojo", 0)
+                IntroductionJobStart("SubDojo", 0);
                 IntroductionJobDojoStart();
                 return true;
             }
@@ -3792,7 +3792,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 minigame = "";
                 M_MOANER_saveControls();
                 IntroductionJobList = ["DomKidnap"];
-                IntroductionJobStart("DomKidnap", 0)
+                IntroductionJobStart("DomKidnap", 0);
                 IntroductionJobBouncerStart();
                 return true;
             }
@@ -3800,7 +3800,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 minigame = "";
                 M_MOANER_saveControls();
                 IntroductionJobList = ["DomPuppy"];
-                IntroductionJobStart("DomPuppy", 0)
+                IntroductionJobStart("DomPuppy", 0);
                 IntroductionJobPuppyStart();
                 return true;
             }
@@ -16698,3 +16698,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 
 })();
+
