@@ -6355,7 +6355,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                             ChatSearchQuery(ChatSearchQueryString);
                         }, {
                             tooltip: TextGet("Asylum"),
-                            tooltipPosition: "bottom",
+                            tooltipPosition: "left",
                             image: "Icons/Asylum.png",
                         }, {
                             button: {
@@ -17077,3 +17077,4 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }])
 
 })();
+
