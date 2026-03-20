@@ -12,9 +12,9 @@ Most recent version: 5.8.3
 
 **Recommended methode with Tampermonkey** - links to the ULTRAbc loader: 
 
-Automatic: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
+English version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.user.js
 
-Non-automatic: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader.js
+Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcloader-ch.user.js
 
 You can find Tampermonkey here: https://www.tampermonkey.net/ (it's available for several browsers: Chrome, Microsoft Edge, Safari, Opera Next, Firefox, Kiwi, UC)
 
@@ -23,3 +23,5 @@ Manual installation: Add new script / Utilities / Insert link to non-automatic U
 To update: Go to Installed Scripts / Click on date corresponding to ULTRAbc (TM will search for new version and install it)
 
 **Bookmark methode** - link to the ULTRAbc bookmark: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark.js
+
+Chinese version: https://tetris245.github.io/ultrabc.github.io/ULTRAbcbookmark-ch.js
