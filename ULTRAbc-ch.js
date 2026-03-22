@@ -2871,9 +2871,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             TintsEffect();
             ChatAdminGameList = ["", "ClubCard", "LARP", "MagicBattle", "GGTS", "Prison"];
             if (ChatAdminCanEdit()) {
-                DrawButton(1230, 450, 60, 60, "", "White", "", "Random background");
+                DrawButton(1230, 450, 60, 60, "", "White", "", "随机背景");
             } else {
-                DrawButton(1230, 450, 60, 60, "", "Gray", "", "Random background");
+                DrawButton(1230, 450, 60, 60, "", "Gray", "", "随机背景");
             }
             DrawImageResize("Icons/Random.png", 1230, 450, 60, 60);
             next(args);
@@ -4171,9 +4171,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('InformationSheetRun', 4, (args, next) => {
             InformationSheetBackground = ifname;
             if (noifbuttons == false) {
-                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                DrawButton(1575, 910, 90, 90, "", "White", "Icons/Reset.png", "默认背景");
+                DrawButton(1695, 910, 90, 90, "", "White", "Icons/Random.png", "随机背景");
+                DrawButton(1815, 910, 90, 90, "", "White", "Icons/Explore.png", "选择背景");
             }
             TintsEffect();
             if (onlydays == true) {
@@ -4985,9 +4985,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             if (sosbuttons == true) SosButtons();
             if (outbuttons == true) OutButtons();
             if (notcbuttons == false) {
-                DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                DrawButton(1765, 745, 90, 90, "", "White", "Icons/Reset.png", "默认背景");
+                DrawButton(1885, 745, 90, 90, "", "White", "Icons/Random.png", "随机背景");
+                DrawButton(1885, 865, 90, 90, "", "White", "Icons/Explore.png", "选择背景");
             }
             TintsEffect();
             next(args);
@@ -5517,9 +5517,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         modApi.hookFunction('AppearanceMenuDraw', 4, (args, next) => {
             if (CharacterAppearanceMode == "") {
                 if (nowrbuttons == false) {
-                    DrawButton(260, 910, 90, 90, "", "White", "Icons/Reset.png", "Default background");
-                    DrawButton(380, 910, 90, 90, "", "White", "Icons/Random.png", "Random background");
-                    DrawButton(500, 910, 90, 90, "", "White", "Icons/Explore.png", "Select background");
+                    DrawButton(260, 910, 90, 90, "", "White", "Icons/Reset.png", "默认背景");
+                    DrawButton(380, 910, 90, 90, "", "White", "Icons/Random.png", "随机背景");
+                    DrawButton(500, 910, 90, 90, "", "White", "Icons/Explore.png", "选择背景"); 
                 }
             }
             next(args);
