@@ -8,7 +8,7 @@ Most recent version: 5.9
 
 ## Installation 
 
-*Preliminary note* : if you use many add-ons for BC, you could be interested by **FUSAM**, a multi-add-on-loader for TamperMonkey: https://sidiousious.gitlab.io/bc-addon-loader
+*Preliminary note* : if you use many add-ons for BC, you could be interested by **FUSAM**, a multi-add-on-loader for TamperMonkey: https://sidiousious.gitlab.io/bc-addon-loader/
 
 In this case, you will have 3 buttons on the Login screen, so you can click on the appropriate button to load the English, Chinese or Spanish version of UBC. 
 
