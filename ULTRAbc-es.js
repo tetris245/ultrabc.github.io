@@ -3105,7 +3105,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 pronoun3 = "su";
                                 pronoun4 = "él";
                                 if (ini == 1) M_MOANER_saveControls();
-			                } else if (chprn == "ItIt") {
+			    } else if (chprn == "ItIt") {
                                 pronoun1 = "Eso";
                                 pronoun2 = "lo";
                                 pronoun3 = "su";
