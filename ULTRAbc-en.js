@@ -7976,34 +7976,40 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         const spacing = 55;
 	    const spacingLarge = 75;
 	    let currentY = 125;
-        if (C.OnlineSharedSettings.cname != undefined) {
-             if (C.OnlineSharedSettings.cname != "") {
-                  DrawTextFit(TextGet("Name") + " " + C.OnlineSharedSettings.cname, 550, currentY, 450, "Black", "Gray"); 
-             } else {
-	           DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
-             }
-         } else {
-             DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
-         }
+        if (C.OnlineSharedSettings != undefined) {
+            if (C.OnlineSharedSettings.cname != undefined) {
+                if (C.OnlineSharedSettings.cname != "") {
+                    DrawTextFit(TextGet("Name") + " " + C.OnlineSharedSettings.cname, 550, currentY, 450, "Black", "Gray"); 
+                } else {
+	                DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
+                }
+            } else {
+                DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
+            }
+        } else {
+            DrawTextFit(TextGet("Name") + " " + C.Name, 550, currentY, 450, "Black", "Gray");
+        }
 	    currentY += spacing;
 	    if (C.Name !== CharacterNickname(C)) {
 	        DrawTextFit(TextGet("Nickname") + " " + CharacterNickname(C), 550, currentY, 450, "Black", "Gray");
 		    currentY += spacing;
 	    }
-	    if (C.OnlineSharedSettings.ctitle != undefined){
-            if (C.OnlineSharedSettings.ctitle != "") {
-                DrawTextFit(TextGet("Title") + " " + C.OnlineSharedSettings.ctitle, 550, currentY, 450, "#0000BF", "Black", "Gray"); 
+	    if (C.OnlineSharedSettings != undefined) {          
+	        if (C.OnlineSharedSettings.ctitle != undefined){
+                 if (C.OnlineSharedSettings.ctitle != "") {
+                     DrawTextFit(TextGet("Title") + " " + C.OnlineSharedSettings.ctitle, 550, currentY, 450, "#0000BF", "Black", "Gray"); 
+                 } else {
+                     if (CurrentTitle != "None") {
+                         DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
+                     }
+                 }
             } else {
-                if (CurrentTitle != "None") {
-                    DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
-                }
+                  if (CurrentTitle != "None") {
+                      DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
+                  }
             }
-        } else {
-            if (CurrentTitle != "None") {
-                DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, currentY, 450, TitleIsForced(CurrentTitle) ? "Red" : TitleIsEarned(CurrentTitle) ? "#0000BF" : "Black", "Gray");
-            }
-        }
-        currentY += spacing;
+            currentY += spacing;
+		}	
 	    if (C.MemberNumber != null) {
 		    DrawTextFit(TextGet("MemberNumber") + " " + C.MemberNumber.toString(), 550, currentY, 450, "Black", "Gray");
 		    currentY += spacing;
@@ -8012,7 +8018,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         currentY += spacingLarge;
 	    return currentY;
     }
-
+	        
 	function InformationSheetDrawButtons(C) {
         MainCanvas.textAlign = "center";
 	    DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");	
@@ -8150,7 +8156,6 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 	    else relationshipQualifier = "RelationshipAtrocious";
 	    let loveLine = TextGet("Relationship") + " " + C.Love.toString() + " " + TextGet(relationshipQualifier);
 	    DrawTextFit(loveLine, 550, currentY, 450, "Black", "Gray");
-	    currentY += spacingLarge;
 	    return currentY;
     }
 
@@ -8161,7 +8166,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 		    1: "Engaged",
 		    2: "Married",
 	    });
-	    let currentY = 275;
+	    let currentY = 450;
 	    const lovership = C.GetLovership();
 	    const playerLove = lovership.find(l => l.MemberNumber === Player.MemberNumber);
 	    if (!C.LoverName() && !playerLove) {
@@ -8216,7 +8221,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
 
 	function InformationSheetDrawNPCOwnerAndTraits(C) {
         const spacing = 55;
-	    let currentY = 275;
+	    let currentY = 500;
 	    if (!C.IsNpc()) return;
 	    if (!C.IsOwned()) {
 	        DrawText(`${TextGet("Owner")} ${TextGet("None")}`, 550, currentY, "Black", "Gray");
