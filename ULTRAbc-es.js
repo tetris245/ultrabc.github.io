@@ -8046,13 +8046,13 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
             DrawButton(1815, 190, 90, 90, "", "White", "Icons/Introduction.png");
 		    if (C.HasOwnerNotes() || C.IsFullyOwnedByPlayer())
 	            DrawButton(1715, 190, 90, 90, "", "White", "Icons/Management.png");
-		    if (C.IsNpc()) return;
-            if (!window.BCX_Loaded) {
-                DrawButton(1815, 765, 90, 90, "", "White", "Icons/Next.png");
-            } else {
-                DrawButton(1815, 800, 90, 90, "", "White", "Icons/Next.png");
-            }
-	    }
+		}
+		if (C.IsNpc()) return;
+        if (!window.BCX_Loaded) {
+             DrawButton(1815, 765, 90, 90, "", "White", "Icons/Next.png");
+        } else {
+            DrawButton(1815, 800, 90, 90, "", "White", "Icons/Next.png");
+        }
    }
 
    function InformationSheetDrawLoverInfo(C) {
