@@ -15586,9 +15586,9 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     let house = "";
                     if (ReputationGet(Player, "HouseAmplector") != 0) house = "HouseAmplector";
                     if (ReputationGet(Player, "HouseCorporis") != 0) house = "HouseCorporis";
-                    if (ReputationGet(PLayer, "HouseMaiestas") != 0) house = "HouseMaiestas";
+                    if (ReputationGet(Player, "HouseMaiestas") != 0) house = "HouseMaiestas";
                     if (ReputationGet(Player, "HouseVincula") != 0) house = "HouseVincula";
-                    if (ReputationGet(house) < 25) {
+                    if (house && ReputationGet(house) < 25) {
                         DialogSetReputation(house, 25);
                     }
                     TitleSet("Bishop");
