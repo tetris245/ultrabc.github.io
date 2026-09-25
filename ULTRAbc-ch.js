@@ -1082,7 +1082,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (cname == null || cname == undefined) cname = "";
                 if (cowner1 == null || cowner1 == undefined) cowner1 = "";
                 if (cowner2 == null || cowner2 == undefined) cowner2 = 0;
-                if (cowner3 == null || cowner2 == undefined) cowner3 = 0;
+                if (cowner3 == null || cowner3 == undefined) cowner3 = 0;
                 if (cskeys == null || cskeys == undefined) cskeys = false;
                 if (csname == null || csname == undefined) csname = "Introduction";
                 if (ctitle == null || ctitle == undefined) ctitle = "";
@@ -15565,7 +15565,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     if (ReputationGet(Player, "HouseCorporis") != 0) house = "HouseCorporis";
                     if (ReputationGet(Player, "HouseMaiestas") != 0) house = "HouseMaiestas";
                     if (ReputationGet(Player, "HouseVincula") != 0) house = "HouseVincula";
-                    if (ReputationGet(house) < 75) {
+                    if (house && ReputationGet(house) < 75) {
                         DialogSetReputation(house, 75);
                     }
                     TitleSet("Archbishop");
@@ -16808,7 +16808,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                                 infomsg(msg);
                             }
                         }
-                        if ((Item.Asset.Name == "HeavyDutyBelt") || (Item.Asset.Name == "ModularChastityBelt") || (Item.Asset.Namer == "SciFiPleasurePanties")) {
+                        if ((Item.Asset.Name == "HeavyDutyBelt") || (Item.Asset.Name == "ModularChastityBelt") || (Item.Asset.Name == "SciFiPleasurePanties")) {
                             if ((mode > -1) && (mode < 10)) {
                                 if ((mode > -1) && (mode < 5)) {
                                     ExtendedItemSetOptionByRecord(Player, Item, {
