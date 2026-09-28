@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name ULTRAbc
+// @name ULTRAbc test
 // @namespace https://www.bondageprojects.com/
 // @version 2.3
 // @description Everything you'll ever need for BC
