@@ -15500,7 +15500,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         }
     }])
 
-    CommandCombine([{
+	CommandCombine([{
         Tag: 'roleplay',
         Description: "(rol): comienza a jugar un rol específico.",
         Action: (args) => {
@@ -15509,17 +15509,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                     "Podrás verificar los cambios en tu perfil.\n" +
                     " \n" +
                     "Roles disponibles:\n" +
-                    "doctor, headmaid, magician, magus,\n" +
-                    "maid, nurse, oracle, patient,\n" +
-                    "permanentpatient, sage, sorcerer, warlock, witch, wizard.\n";
+                    "clubmistress, clubslave, doctor, escapedpatient,\n" +
+                    "headmaid, kidnapper, maid, magician, magus,\n" +
+                    "masterkidnapper, mistress, nurse, oracle, patient,\n" +
+                    "permanentpatient, sage, sorcerer, warlock, witch, wizard.\n" +
+                    "Ten cuidado con clubslave; te verás obligado a cumplir el contrato. Una advertencia similar aplica para escapedpatient.";
                 infomsg(msg);
             } else {
                 let role = args;
+                if (role == "clubmistress") LogAdd("ClubMistress", "Management");
+                if (role == "clubslave") LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
                 if (role == "doctor") {
                     LogAdd("Committed", "Asylum", CurrentTime);
                     ReputationChange('Asylum', 200);
                 }
+                if (role == "escapedpatient") LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
                 if (role == "headmaid") LogAdd("LeadSorority", "Maid");
+                if (role == "kidnapper") DialogSetReputation("Kidnap", 50);
                 if (role == "magician") {
                     ResetHousesReputation();
                     DialogSetReputation("HouseVincula", 50);
@@ -15531,6 +15537,11 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
                 if (role == "maid") {
                     LogDelete("LeadSorority", "Maid");
                     LogAdd("JoinedSorority", "Management");
+                }
+                if (role == "masterkidnapper") ReputationChange("Kidnap", 100);
+                if (role == "mistress") {
+                    LogAdd("ClubMistress", "Management");
+                    ReputationChange("Dominant", 200);
                 }
                 if (role == "nurse") {
                     LogAdd("Committed", "Asylum", CurrentTime);
