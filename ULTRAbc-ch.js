@@ -11268,9 +11268,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
     }
 
     function stopDebug() {
-        M_MOANER_logDebug = (msg) => {
-            console.log("DEBUG: " + msg);
-        };
+        M_MOANER_logDebug = (msg) => {};
     }
 
     function M_MOANER_getKeys(obj) {
