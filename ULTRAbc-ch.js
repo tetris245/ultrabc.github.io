@@ -5030,7 +5030,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         return next(args);
     });
 
-     modApi.patchFunction(
+    modApi.patchFunction(
         "PandoraPrisonRun", {
             "if (Player.Infiltration.Punishment.Timer > CurrentTime + MS_PER_HOUR) Player.Infiltration.Punishment.Timer = CurrentTime + MS_PER_HOUR;": "",
         }
