@@ -722,7 +722,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         Visible = "";
     }
 
-    function UBCdata(data) {
+	function UBCdata(data) {
         afkinfo = data.afkinfo;
         afktime = data.afktime;
         ahybrid = data.ahybrid;
@@ -731,14 +731,14 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         alfrpsk = data.alfrpsk;
         altchsh = data.altchsh;
         altwrobe = data.altwrobe;
-        animal = data.animal * 1;
-        animstate = data.animstate * 1;
+        animal = (data.animal ?? 0) * 1;
+        animstate = (data.animstate ?? 0) * 1;
         asylumlimit = data.asylumlimit;
         autojoin = data.autojoin;
         bgall = data.bgall;
         bl = data.bl;
-        ccards = data.ccards * 1;
-        cdeck = data.cdeck * 1;
+        ccards = (data.ccards ?? 30) * 1;
+        cdeck = (data.cdeck ?? 0) * 1;
         cextra = data.cextra;
         cfame = data.cfame;
         cname = data.cname;
@@ -755,7 +755,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         fixperm = data.fixperm;
         fullseed = data.fullseed;
         frkeys = data.frkeys;
-        gl = data.gaglevel * 1;
+        gl = (data.gaglevel ?? 0) * 1;
         highfame = data.highfame;
         hotkeys = data.hotkeys;
         ifext = data.ifext;
@@ -768,7 +768,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         mapfull = data.mapfull;
         mapfull2 = data.mapfull2;
         mapfull3 = data.mapfull3;
-        maptrap1 = data.maptrap1 * 1;
+        maptrap1 = (data.maptrap1 ?? 0) * 1;
         minigame = data.minigame;
         mission = data.mission;
         noescape = data.noescape;
@@ -786,23 +786,23 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         nowhisper = data.nowhisper;
         nowhrange = data.nowhrange;
         //nowrbuttons = data.nowrbuttons;
-        npcdeck = data.npcdeck * 1;
+        npcdeck = (data.npcdeck ?? -1) * 1;
         npcpunish = data.npcpunish;
         onlydays = data.onlydays;
         outbuttons = data.outbuttons;
-        pmax = data.pmax * 1;
+        pmax = (data.pmax ?? 20) * 1;
         rglbuttons = data.rglbuttons;
         rglsync = data.rglsync;
-        rpabdl = data.rpabdl * 1;
-        rpasyl = data.rpasyl * 1;
-        rpgamb = data.rpgamb * 1;
-        rpgame = data.rpgame * 1;
-        rpkidn = data.rpkidn * 1;
-        rplarp = data.rplarp * 1;
-        rpmagh = data.rpmagh * 1;
-        rpmagp = data.rpmagp * 1;
-        rpmaid = data.rpmaid * 1;
-        rpmain = data.rpmain * 1;
+        rpabdl = (data.rpabdl ?? 0) * 1;
+        rpasyl = (data.rpasyl ?? 0) * 1;
+        rpgamb = (data.rpgamb ?? 0) * 1;
+        rpgame = (data.rpgame ?? 0) * 1;
+        rpkidn = (data.rpkidn ?? 0) * 1;
+        rplarp = (data.rplarp ?? 0) * 1;
+        rpmagh = (data.rpmagh ?? 0) * 1;
+        rpmagp = (data.rpmagp ?? 0) * 1;
+        rpmaid = (data.rpmaid ?? 0) * 1;
+        rpmain = (data.rpmain ?? 0) * 1;
         silent = data.silent;
         silsafe = data.silsafe;
         skbondage = data.skbondage;
@@ -814,7 +814,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         skwillpower = data.skwillpower;
         slowleave = data.slowleave;
         sosbuttons = data.sosbuttons;
-        st = data.stutterlevel * 1;
+        st = (data.stutterlevel ?? 0) * 1;
         tintcolor = data.tintcolor;
         tintlevel = data.tintlevel;
         tintmbs = data.tintmbs;
@@ -822,7 +822,7 @@ var bcModSDK=function(){"use strict";const o="1.2.0";function e(o){alert("Mod ER
         usoft = data.usoft;
         utotal = data.utotal;
     }
-
+   
     function M_MOANER_initControls() {
         let data = JSON.parse(localStorage.getItem(M_MOANER_moanerKey + "_" + Player.MemberNumber));
 		ubcSettingsLoaded = true;
