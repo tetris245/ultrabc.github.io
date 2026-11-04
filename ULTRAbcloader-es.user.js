@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name ULTRAbc-es
 // @namespace https://www.bondageprojects.com/
-// @version 6.3.2
+// @version 6.4
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -23,7 +23,7 @@ setTimeout(
 			let n = document.createElement("script");
 			n.setAttribute("language", "JavaScript");
 			n.setAttribute("crossorigin", "anonymous");
-			n.setAttribute("src", "https://tetris245.github.io/ultrabc.github.io/ULTRAbc-es.js?_=" + Date.now());
+			n.setAttribute("src", "https://tetris245.github.io/ultrabc.github.io/ULTRAbc.js?_=" + Date.now());
 			n.onload = () => n.remove();
 			document.head.appendChild(n);
 	}, 
